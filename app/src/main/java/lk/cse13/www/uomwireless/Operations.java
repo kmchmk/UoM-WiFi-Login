@@ -1,6 +1,7 @@
 package lk.cse13.www.uomwireless;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -11,13 +12,21 @@ import java.io.OutputStreamWriter;
 
 
 public class Operations{
-private Context context;
+private static Context context;
+    private static Toast toastvariable;
     public Operations(Context context) {
         this.context = context;
     }
 
+    public static void toast(String message) {
+        if (toastvariable != null){
+            toastvariable.cancel();
+        }
+        toastvariable = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        toastvariable.show();
+    }
+
     public void writeToFile(String data, String file) {
-//        Log.i("get","inside write");
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file, Context.MODE_PRIVATE));
             outputStreamWriter.write(data);
@@ -31,7 +40,6 @@ private Context context;
     public String readFromFile(String file) {
 
         String ret = "";
-//        Log.i("get","inside read");
         try {
             InputStream inputStream = context.openFileInput(file);
 

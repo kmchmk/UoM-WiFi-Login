@@ -1,31 +1,30 @@
 package lk.cse13.www.uomwireless;
 
-
-import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.net.Uri;
-import android.net.http.SslError;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Toast;
 
-import org.apache.http.util.EncodingUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.io.IOException;
-import java.net.InetAddress;
 
 
 public class MainActivity extends AppCompatActivity {
     public static WebView webview;
     private Operations operations;
+    public static FloatingActionButton loggingfb;
+    public static boolean loggedIn = false;
+    int thisAppVesion = 0;//change this everytime updating the app
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +33,14 @@ public class MainActivity extends AppCompatActivity {
 
         operations = new Operations(getApplicationContext());
         webview = (WebView) findViewById(R.id.webView);
-        webview.clearCache(true);
-        webview.setWebViewClient(new MyBrowser());
-        webview.setWebChromeClient(new MyChromeBrowser());
-        webview.getSettings().setJavaScriptEnabled(true);
+
+        webview.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+//                operations.toast("Touch disabled");
+                return true;
+            }
+        });
 
         FloatingActionButton settingsfb = (FloatingActionButton) findViewById(R.id.settingsfb);
         settingsfb.setOnClickListener(new View.OnClickListener() {
@@ -49,85 +52,61 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        final FloatingActionButton loggingfb = (FloatingActionButton) findViewById(R.id.loggingfb);
+        loggingfb = (FloatingActionButton) findViewById(R.id.loggingfb);
         loggingfb.setOnClickListener(new View.OnClickListener() {
-            boolean loggedIn = true;
+
             @Override
             public void onClick(View view) {
-                if (loggedIn) {
-                    logout();
-                    loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-                    loggedIn = false;
-                    Toast.makeText(getApplicationContext(),"Logging out...",Toast.LENGTH_LONG).show();
+                WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                WifiInfo info = wifiManager.getConnectionInfo();
+                if (info.getSSID().toString().equalsIgnoreCase("\"UoM_Wireless\"")) {
+                    if (loggedIn) {
+                        operations.toast("Logging out...");
+                        new BackgroundLogout(MainActivity.this, operations).execute();
+                    } else {
+                        operations.toast("Logging in...");
+                        new BackgroundLogin(MainActivity.this, operations).execute();
+                    }
                 } else {
-                    login();
-                    loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    loggedIn = true;
-                    Toast.makeText(getApplicationContext(),"Logging in...",Toast.LENGTH_LONG).show();
+                    operations.toast("Connect to UoM Wireless first");
                 }
 
             }
         });
-        new BackgroundLogin(getApplicationContext()).execute();
+        operations.toast("Logging in...");
+        new BackgroundLogin(this, operations).execute();
+
+
+        String updateMessage = operations.readFromFile("newVersion");
+        try {
+            if (new JSONObject(updateMessage).getInt("newversion") > thisAppVesion) {
+                JSONObject jsonObject = new JSONObject(updateMessage);
+                final String apkurl = jsonObject.getString("apkurl");
+                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
+                dlgAlert.setMessage(jsonObject.getString("message"));
+                dlgAlert.setTitle(jsonObject.getString("title"));
+                dlgAlert.setPositiveButton(jsonObject.getString("positivebutton"), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        getApplicationContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(apkurl)));
+                    }
+                });
+
+                dlgAlert.setNegativeButton(jsonObject.getString("negativebutton"), null);
+                dlgAlert.create().show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        new BackgroundLogin(getApplicationContext()).execute();
+        operations.toast("Loggin in...");
+        new BackgroundLogin(this, operations).execute();
     }
 
-
-
-
-
-
-    public void login() {
-
-        String index = operations.readFromFile("ind");
-        String password = operations.readFromFile("psd");
-
-
-        String login = "buttonClicked=4&err_flag=0&err_msg=&info_flag=0&info_msg=&redirect_url=&network_name=Guest%20Network&username=" + index + "&password=" + password;
-        webview.postUrl("https://wlan.uom.lk/login.html", EncodingUtils.getBytes(login, "BASE64"));
-    }
-    private void logout() {
-        String logout = "userStatus=1&err_flag=0&err_msg=";
-        webview.postUrl("https://wlan.uom.lk/logout.html", EncodingUtils.getBytes(logout, "BASE64"));
-    }
-
-
-    private class MyBrowser extends WebViewClient {
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if (!Uri.parse(url).getHost().equals("www.mrt.ac.lk")) {
-                view.loadUrl(url);
-            }
-            return true;
-        }
-
-        @Override
-        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-            handler.proceed(); // Ignore SSL certificate errors
-        }
-
-
-    }
-
-    private class MyChromeBrowser extends WebChromeClient {
-        private ProgressDialog mProgress;
-
-        @Override
-        public void onProgressChanged(WebView view, int progress) {
-            if (mProgress == null) {
-                mProgress = new ProgressDialog(MainActivity.this);
-                mProgress.show();
-            }
-            mProgress.setMessage("Loading");
-            if (progress == 100) {
-                mProgress.dismiss();
-                mProgress = null;
-            }
-        }
-    }
 }

@@ -1,8 +1,12 @@
 package lk.cse13.www.uomwireless;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
-import android.widget.Toast;
+import android.util.Log;
 
 
 import org.apache.http.HttpResponse;
@@ -20,7 +24,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.message.BasicNameValuePair;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -40,59 +43,73 @@ import javax.net.ssl.X509TrustManager;
 
 public class BackgroundLogin extends AsyncTask<String, Void, String> {
     private Operations operations;
-private Context context;
+    private Context context;
+
+    public BackgroundLogin(Context context, Operations operations) {
+        this.context = context;
+        this.operations = operations;
+    }
+
     public BackgroundLogin(Context context) {
         this.context = context;
-        operations = new Operations(context);
+        this.operations = new Operations(context);
     }
 
     @Override
     protected String doInBackground(String[] params) {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo info = wifiManager.getConnectionInfo();
+        if (info.getSSID().toString().equalsIgnoreCase("\"UoM_Wireless\"")) {
 
-        HttpResponse response = null;
+            try {
 
-        try {
+                MyHttpClient httpClient = new MyHttpClient();
 
-            MyHttpClient httpClient = new MyHttpClient();
+                HttpPost httpPost = new HttpPost("https://wlan.uom.lk/login.html");
 
-            HttpPost httpPost = new HttpPost("https://wlan.uom.lk/login.html");
+                List<NameValuePair> para = new ArrayList<NameValuePair>();
 
-            List<NameValuePair> para = new ArrayList<NameValuePair>();
+                para.add(new BasicNameValuePair("buttonClicked", "4"));
+                para.add(new BasicNameValuePair("err_flag", "0"));
+                para.add(new BasicNameValuePair("err_msg", ""));
+                para.add(new BasicNameValuePair("info_flag", "0"));
+                para.add(new BasicNameValuePair("info_msg", ""));
+                para.add(new BasicNameValuePair("redirect_url", ""));
+                para.add(new BasicNameValuePair("network_name", "Guest Network"));
+                para.add(new BasicNameValuePair("username", operations.readFromFile("ind")));
+                para.add(new BasicNameValuePair("password", operations.readFromFile("psd")));
 
-            para.add(new BasicNameValuePair("buttonClicked", "4"));
-            para.add(new BasicNameValuePair("err_flag", "0"));
-            para.add(new BasicNameValuePair("err_msg", ""));
-            para.add(new BasicNameValuePair("info_flag", "0"));
-            para.add(new BasicNameValuePair("info_msg", ""));
-            para.add(new BasicNameValuePair("redirect_url", ""));
-            para.add(new BasicNameValuePair("network_name", "Guest Network"));
-            para.add(new BasicNameValuePair("username", operations.readFromFile("ind")));
-            para.add(new BasicNameValuePair("password", operations.readFromFile("psd")));
+                httpPost.setEntity(new UrlEncodedFormEntity(para));
 
-            httpPost.setEntity(new UrlEncodedFormEntity(para));
+                HttpResponse response = httpClient.execute(httpPost);
+
+                Log.i("qqq",response.getEntity().toString());
+
+                String responseString = "Couldn't log in";
+                StatusLine statusLine = response.getStatusLine();
 
 
-            response = httpClient.execute(httpPost);
-            String responseString = "Nothing";
-            StatusLine statusLine = response.getStatusLine();
-            Toast.makeText(context,"Logging out...",Toast.LENGTH_LONG).show();
-            if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-                Toast.makeText(context, "Login Successful!", Toast.LENGTH_LONG).show();
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                response.getEntity().writeTo(out);
-                responseString = out.toString();
-                out.close();
+                if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+                    responseString = "Logged in";
+                }
+                return responseString;
+            } catch (Exception e) {
+                return "Error";
             }
-            return responseString;
-        } catch (Exception e) {
-            return e.toString();
+        } else {
+            return "Connect to UoM Wireless first";
         }
-
     }
 
     @Override
     protected void onPostExecute(String message) {
-//        Log.i("get", message);
+        operations.toast(message);
+        if (message.equals("Logged in")) {
+            MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            MainActivity.loggedIn = true;
+            MainActivity.webview.loadUrl("file:///android_asset/logged_in.html");
+            new Updates(operations).execute();
+        }
     }
 
 
