@@ -11,15 +11,16 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 
-public class Operations{
-private static Context context;
+public class Operations {
+    private static Context context;
     private static Toast toastvariable;
+
     public Operations(Context context) {
         this.context = context;
     }
 
     public static void toast(String message) {
-        if (toastvariable != null){
+        if (toastvariable != null) {
             toastvariable.cancel();
         }
         toastvariable = Toast.makeText(context, message, Toast.LENGTH_SHORT);
@@ -31,9 +32,8 @@ private static Context context;
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file, Context.MODE_PRIVATE));
             outputStreamWriter.write(data);
             outputStreamWriter.close();
-        }
-        catch (IOException e) {
-//            Log.e("Exception", "File write failed: " + e.toString());
+        } catch (IOException e) {
+            toast("Cannot save username or password");
         }
     }
 
@@ -43,24 +43,23 @@ private static Context context;
         try {
             InputStream inputStream = context.openFileInput(file);
 
-            if ( inputStream != null ) {
+            if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String receiveString = "";
                 StringBuilder stringBuilder = new StringBuilder();
 
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                while ((receiveString = bufferedReader.readLine()) != null) {
                     stringBuilder.append(receiveString);
                 }
 
                 inputStream.close();
                 ret = stringBuilder.toString();
             }
-        }
-        catch (FileNotFoundException e) {
-//            Log.e("Exception", "File not found: " + e.toString());
+        } catch (FileNotFoundException e) {
+            toast("Username or Password not found");
         } catch (IOException e) {
-//            Log.e("Exception", "Can not read file: " + e.toString());
+            toast("Cannot read username or password");
         }
 
         return ret;

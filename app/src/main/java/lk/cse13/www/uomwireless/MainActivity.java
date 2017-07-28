@@ -24,13 +24,11 @@ public class MainActivity extends AppCompatActivity {
     private Operations operations;
     public static FloatingActionButton loggingfb;
     public static boolean loggedIn = false;
-    int thisAppVesion = 0;//change this everytime updating the app
-
+    public static boolean screenShowing = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         operations = new Operations(getApplicationContext());
         webview = (WebView) findViewById(R.id.webView);
 
@@ -77,29 +75,19 @@ public class MainActivity extends AppCompatActivity {
         new BackgroundLogin(this, operations).execute();
 
 
-        String updateMessage = operations.readFromFile("newVersion");
-        try {
-            if (new JSONObject(updateMessage).getInt("newversion") > thisAppVesion) {
-                JSONObject jsonObject = new JSONObject(updateMessage);
-                final String apkurl = jsonObject.getString("apkurl");
-                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
-                dlgAlert.setMessage(jsonObject.getString("message"));
-                dlgAlert.setTitle(jsonObject.getString("title"));
-                dlgAlert.setPositiveButton(jsonObject.getString("positivebutton"), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        getApplicationContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(apkurl)));
-                    }
-                });
-
-                dlgAlert.setNegativeButton(jsonObject.getString("negativebutton"), null);
-                dlgAlert.create().show();
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
 
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        screenShowing = true;
+    }
+
+    protected void onStop(){
+        super.onStop();
+        screenShowing = false;
     }
 
     @Override

@@ -6,8 +6,6 @@ import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
-import android.util.Log;
-
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -44,15 +42,17 @@ import javax.net.ssl.X509TrustManager;
 public class BackgroundLogin extends AsyncTask<String, Void, String> {
     private Operations operations;
     private Context context;
-
+    //private Boolean gui;
     public BackgroundLogin(Context context, Operations operations) {
         this.context = context;
         this.operations = operations;
+        //this.gui = gui;
     }
 
     public BackgroundLogin(Context context) {
         this.context = context;
         this.operations = new Operations(context);
+        //this.gui = gui;
     }
 
     @Override
@@ -83,8 +83,6 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
 
                 HttpResponse response = httpClient.execute(httpPost);
 
-                Log.i("qqq",response.getEntity().toString());
-
                 String responseString = "Couldn't log in";
                 StatusLine statusLine = response.getStatusLine();
 
@@ -96,19 +94,22 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
             } catch (Exception e) {
                 return "Error";
             }
-        } else {
-            return "Connect to UoM Wireless first";
         }
+        return  "";
     }
 
     @Override
     protected void onPostExecute(String message) {
-        operations.toast(message);
-        if (message.equals("Logged in")) {
-            MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-            MainActivity.loggedIn = true;
-            MainActivity.webview.loadUrl("file:///android_asset/logged_in.html");
-            new Updates(operations).execute();
+        if(!message.equals("")) {
+            operations.toast(message);
+            if (message.equals("Logged in")) {
+                if (MainActivity.screenShowing) {
+                    MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    MainActivity.loggedIn = true;
+                    MainActivity.webview.loadUrl("file:///android_asset/logged_in.html");
+                    new Updates(context).execute();
+                }
+            }
         }
     }
 

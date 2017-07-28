@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
-import android.util.Log;
 
 
 import org.apache.http.HttpResponse;
