@@ -22,13 +22,6 @@ import java.net.URI;
 
 
 class Updates extends AsyncTask<String, Void, String> {
-    private Context context;
-
-    public Updates(Context context) {
-        this.context = context;
-    }
-
-
     @Override
     protected String doInBackground(String[] params) {
         String versionURL = "http://13.58.202.127/UoM_Wireless_App/version.php";
@@ -56,7 +49,7 @@ class Updates extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         if (!message.equals("false")) {
 
-            int thisAppVersion = 0;//change this everytime updating the app
+            int thisAppVersion = -1;//change this everytime updating the app
 
             try {
                 if (new JSONObject(message).getInt("newversion") > thisAppVersion) {
@@ -65,7 +58,7 @@ class Updates extends AsyncTask<String, Void, String> {
                     Log.i("qqq","2");
                     final String apkurl = jsonObject.getString("apkurl");
                     Log.i("qqq","3");
-                    AlertDialog.Builder dlgAlert = new AlertDialog.Builder(context);
+                    AlertDialog.Builder dlgAlert = new AlertDialog.Builder(MainActivity.mainContext);
                     Log.i("qqq","4");
                     dlgAlert.setMessage(jsonObject.getString("message"));
                     Log.i("qqq","5");
@@ -74,7 +67,7 @@ class Updates extends AsyncTask<String, Void, String> {
                     dlgAlert.setPositiveButton(jsonObject.getString("positivebutton"), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(apkurl)));
+                            MainActivity.mainContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(apkurl)));
                         }
                     });
                     Log.i("qqq","7");
@@ -82,8 +75,12 @@ class Updates extends AsyncTask<String, Void, String> {
                     Log.i("qqq","8");
                     dlgAlert.create();;
                     Log.i("qqq","9");
-                    dlgAlert.show();
-                    Log.i("qqq","10");
+                    if(MainActivity.screenShowing) {
+                        Log.i("qqq","10");
+                        dlgAlert.show();
+                        Log.i("qqq","11");
+                    }
+                    Log.i("qqq","12");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

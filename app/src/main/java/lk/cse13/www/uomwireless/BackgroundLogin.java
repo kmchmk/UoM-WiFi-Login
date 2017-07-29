@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -41,26 +42,21 @@ import javax.net.ssl.X509TrustManager;
 
 public class BackgroundLogin extends AsyncTask<String, Void, String> {
     private Operations operations;
-    private Context context;
-    //private Boolean gui;
-    public BackgroundLogin(Context context, Operations operations) {
-        this.context = context;
+
+    public BackgroundLogin(Operations operations) {
         this.operations = operations;
-        //this.gui = gui;
     }
 
-    public BackgroundLogin(Context context) {
-        this.context = context;
-        this.operations = new Operations(context);
-        //this.gui = gui;
-    }
 
     @Override
     protected String doInBackground(String[] params) {
-        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        Log.i("qqq","1");
+        WifiManager wifiManager = (WifiManager) MainActivity.mainContext.getSystemService(Context.WIFI_SERVICE);
+        //Log.i("qqq","2");
         WifiInfo info = wifiManager.getConnectionInfo();
+        //Log.i("qqq","3");
         if (info.getSSID().toString().equalsIgnoreCase("\"UoM_Wireless\"")) {
-
+            Log.i("qqq","4");
             try {
 
                 MyHttpClient httpClient = new MyHttpClient();
@@ -68,7 +64,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 HttpPost httpPost = new HttpPost("https://wlan.uom.lk/login.html");
 
                 List<NameValuePair> para = new ArrayList<NameValuePair>();
-
+                Log.i("qqq","5");
                 para.add(new BasicNameValuePair("buttonClicked", "4"));
                 para.add(new BasicNameValuePair("err_flag", "0"));
                 para.add(new BasicNameValuePair("err_msg", ""));
@@ -76,7 +72,9 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 para.add(new BasicNameValuePair("info_msg", ""));
                 para.add(new BasicNameValuePair("redirect_url", ""));
                 para.add(new BasicNameValuePair("network_name", "Guest Network"));
+                Log.i("qqq","6");
                 para.add(new BasicNameValuePair("username", operations.readFromFile("ind")));
+                Log.i("qqq","7");
                 para.add(new BasicNameValuePair("password", operations.readFromFile("psd")));
 
                 httpPost.setEntity(new UrlEncodedFormEntity(para));
@@ -86,13 +84,13 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 String responseString = "Couldn't log in";
                 StatusLine statusLine = response.getStatusLine();
 
-
+                Log.i("qqq","6");
                 if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
                     responseString = "Logged in";
                 }
                 return responseString;
             } catch (Exception e) {
-                return "Error";
+                return "Error 1";
             }
         }
         return  "";
@@ -102,12 +100,15 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         if(!message.equals("")) {
             operations.toast(message);
+            Log.i("qqq","-3");
             if (message.equals("Logged in")) {
+                Log.i("qqq","-4");
                 if (MainActivity.screenShowing) {
+                    Log.i("qqq","-5");
                     MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     MainActivity.loggedIn = true;
                     MainActivity.webview.loadUrl("file:///android_asset/logged_in.html");
-                    new Updates(context).execute();
+                    new Updates().execute();
                 }
             }
         }

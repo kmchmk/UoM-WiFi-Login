@@ -13,7 +13,8 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         NetworkInfo netinfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
         if (netinfo != null && netinfo.isConnected()) {
-            new BackgroundLogin(context).execute();
+            MainActivity.mainContext = context;
+            new BackgroundLogin(new Operations()).execute();
         }
     }
 

@@ -22,15 +22,15 @@ import java.util.List;
 
 public class BackgroundLogout extends AsyncTask<String, Void, String> {
     private Operations operations;
-    private Context context;
-    public BackgroundLogout(Context context, Operations operations) {
-        this.context = context;
+//    private Context context;
+    public BackgroundLogout(Operations operations) {
+//        this.context = context;
         this.operations = operations;
     }
 
     @Override
     protected String doInBackground(String[] params) {
-        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager) MainActivity.mainContext.getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifiManager.getConnectionInfo();
         if (info.getSSID().toString().equalsIgnoreCase("\"UoM_Wireless\"")) {
 

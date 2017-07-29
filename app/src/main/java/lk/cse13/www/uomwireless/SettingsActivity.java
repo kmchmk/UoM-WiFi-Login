@@ -16,7 +16,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        operations = new Operations(getApplicationContext());
+        operations = new Operations();
         indexbox = (EditText) findViewById(R.id.indexbox);
         passwordbox = (EditText) findViewById(R.id.passwordbox);
         Button saveLoginButton = (Button) findViewById(R.id.save_button);

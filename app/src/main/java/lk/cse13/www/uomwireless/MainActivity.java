@@ -25,11 +25,13 @@ public class MainActivity extends AppCompatActivity {
     public static FloatingActionButton loggingfb;
     public static boolean loggedIn = false;
     public static boolean screenShowing = false;
+    public static Context mainContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        operations = new Operations(getApplicationContext());
+        operations = new Operations();
+        mainContext = MainActivity.this;
         webview = (WebView) findViewById(R.id.webView);
 
         webview.setOnTouchListener(new View.OnTouchListener() {
@@ -60,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
                 if (info.getSSID().toString().equalsIgnoreCase("\"UoM_Wireless\"")) {
                     if (loggedIn) {
                         operations.toast("Logging out...");
-                        new BackgroundLogout(MainActivity.this, operations).execute();
+                        new BackgroundLogout( operations).execute();
                     } else {
                         operations.toast("Logging in...");
-                        new BackgroundLogin(MainActivity.this, operations).execute();
+                        new BackgroundLogin( operations).execute();
                     }
                 } else {
                     operations.toast("Connect to UoM Wireless first");
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         operations.toast("Logging in...");
-        new BackgroundLogin(this, operations).execute();
+        new BackgroundLogin( operations).execute();
 
 
 
@@ -94,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         operations.toast("Loggin in...");
-        new BackgroundLogin(this, operations).execute();
+        new BackgroundLogin(operations).execute();
     }
 
 }
