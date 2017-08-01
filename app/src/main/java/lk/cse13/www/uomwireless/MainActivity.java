@@ -17,30 +17,22 @@ import android.webkit.WebView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.provider.Settings.Secure;
 
 
 public class MainActivity extends AppCompatActivity {
-    public static WebView webview;
     private Operations operations;
     public static FloatingActionButton loggingfb;
     public static boolean loggedIn = false;
     public static boolean screenShowing = false;
     public static Context mainContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         operations = new Operations();
         mainContext = MainActivity.this;
-        webview = (WebView) findViewById(R.id.webView);
-
-        webview.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-//                operations.toast("Touch disabled");
-                return true;
-            }
-        });
 
         FloatingActionButton settingsfb = (FloatingActionButton) findViewById(R.id.settingsfb);
         settingsfb.setOnClickListener(new View.OnClickListener() {
@@ -59,13 +51,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                 WifiInfo info = wifiManager.getConnectionInfo();
-                if (info.getSSID().toString().equalsIgnoreCase("\"UoM_Wireless\"")) {
+                if (info.getSSID().toString().equalsIgnoreCase("\"ChanakaWiFi\"")) {
                     if (loggedIn) {
                         operations.toast("Logging out...");
-                        new BackgroundLogout( operations).execute();
+                        new BackgroundLogout(operations).execute();
                     } else {
                         operations.toast("Logging in...");
-                        new BackgroundLogin( operations).execute();
+                        new BackgroundLogin(operations, 0).execute();
                     }
                 } else {
                     operations.toast("Connect to UoM Wireless first");
@@ -74,29 +66,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         operations.toast("Logging in...");
-        new BackgroundLogin( operations).execute();
-
-
+        new BackgroundLogin(operations, 0).execute();
 
 
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         screenShowing = true;
     }
 
-    protected void onStop(){
+    protected void onStop() {
         super.onStop();
         screenShowing = false;
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        operations.toast("Loggin in...");
-        new BackgroundLogin(operations).execute();
     }
 
 }

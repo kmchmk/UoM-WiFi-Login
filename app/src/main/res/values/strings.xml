@@ -6,4 +6,13 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="clear_all">Clear All</string>
     <string name="logged_in_status">Logged Status</string>
+
+
+    <string name="l1">1).\tTap the settings button at bottom left corner.</string>
+    <string name="l2">2).\tEnter your index number and password.</string>
+    <string name="l3">3).\tClick SAVE.</string>
+    <string name="l4">4).\tFinally tap the login button at the bottom right corner.</string>
+    <string name="wearetrying">For windows: www.wearetrying.info/uomw</string>
+    <string name="contact">Contact: kmchmk@gmail.com</string>
+
 </resources>
