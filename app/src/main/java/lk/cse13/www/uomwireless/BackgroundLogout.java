@@ -6,8 +6,6 @@ import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
-import android.util.Log;
-
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -17,13 +15,8 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 
 public class BackgroundLogout extends AsyncTask<String, Void, String> {
@@ -34,12 +27,9 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String[] params) {
-        Log.i("qqq","inside logout");
         WifiManager wifiManager = (WifiManager) MainActivity.mainContext.getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifiManager.getConnectionInfo();
-        Log.i("qqq","21");
-        if (info.getSSID().toString().equalsIgnoreCase("\"ChanakaWiFi\"")) {
-            Log.i("qqq","22");
+        if (info.getSSID().toString().equalsIgnoreCase("\"UoM_Wireless\"")) {
             try {
 
                 MyHttpClient httpClient = new MyHttpClient();
@@ -53,19 +43,15 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
                 para.add(new BasicNameValuePair("err_msg", ""));
 
                 httpPost.setEntity(new UrlEncodedFormEntity(para));
-                Log.i("qqq","23");
                 HttpResponse response = httpClient.execute(httpPost);
-                Log.i("qqq","24");
                 String responseString = "Couldn't log out";
                 StatusLine statusLine = response.getStatusLine();
 
-                Log.i("qqq","25");
                 if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-
-                    HttpURLConnection urlc = (HttpURLConnection) new URL("http://www.google.com").openConnection();
-                    urlc.setConnectTimeout(1000);
-                    urlc.connect();
-                    if (urlc.getResponseCode() != 200) {//test this
+                    Runtime runtime = Runtime.getRuntime();
+                    Process ipProcess = runtime.exec("/system/bin/ping -c 1 -w 1 10.10.31.254");
+                    int exitValue = ipProcess.waitFor();
+                    if (exitValue != 0) {
                         responseString = "Logged out";
                     }
                 }
@@ -81,12 +67,10 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String message) {
         operations.toast(message);
-        if(message.equals("Logged out")) {
+        if (message.equals("Logged out")) {
             MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             MainActivity.loggedIn = false;
         }
     }
-
-
 }
 

@@ -1,11 +1,18 @@
 package lk.cse13.www.uomwireless;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.DownloadManager;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
+
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -18,13 +25,13 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
-import android.provider.Settings.Secure;
 
+import android.provider.Settings.Secure;
 
 
 class Updates extends AsyncTask<String, Void, String> {
     private Operations operations;
-
+    private static String apkurl = "";
     public Updates(Operations operations) {
         this.operations = operations;
     }
@@ -32,8 +39,7 @@ class Updates extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String[] params) {
         String android_id = Secure.getString(MainActivity.mainContext.getContentResolver(), Secure.ANDROID_ID);
-        String versionURL = "http://13.58.202.127/UoM_Wireless_App/version.php?device="+android_id;
-        Log.i("qqq", versionURL);
+        String versionURL = "http://13.58.202.127/UoM_Wireless_App/version.php?device=" + android_id;
         try {
             HttpClient httpclient = new DefaultHttpClient();
             HttpResponse response = httpclient.execute(new HttpGet(new URI(versionURL)));
@@ -58,47 +64,67 @@ class Updates extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         if (!message.equals("false")) {
 
-            int thisAppVersion = -1;//change this everytime updating the app
+            int thisAppVersion = 1;//change this everytime updating the app
 
             try {
                 if (new JSONObject(message).getInt("newversion") > thisAppVersion) {
-                    Log.i("qqq", "1");
                     JSONObject jsonObject = new JSONObject(message);
-                    Log.i("qqq", "2");
-                    final String apkurl = jsonObject.getString("apkurl");
-                    Log.i("qqq", "3");
+                    apkurl = jsonObject.getString("apkurl");
                     AlertDialog.Builder dlgAlert = new AlertDialog.Builder(MainActivity.mainContext);
-                    Log.i("qqq", "4");
                     dlgAlert.setMessage(jsonObject.getString("message"));
-                    Log.i("qqq", "5");
                     dlgAlert.setTitle(jsonObject.getString("title"));
-                    Log.i("qqq", "6");
                     dlgAlert.setPositiveButton(jsonObject.getString("positivebutton"), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            MainActivity.mainContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(apkurl)));
+                            //MainActivity.mainContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(apkurl)));
+                            if(isStoragePermissionGranted()) {
+                                downloadNewAPK();
+                            }
                         }
                     });
-                    Log.i("qqq", "7");
                     dlgAlert.setNegativeButton(jsonObject.getString("negativebutton"), null);
-                    Log.i("qqq", "8");
                     dlgAlert.create();
-                    ;
-                    Log.i("qqq", "9");
                     if (MainActivity.screenShowing) {
-                        Log.i("qqq", "10");
                         dlgAlert.show();
-                        Log.i("qqq", "11");
                     }
-                    else                    {
-                       operations.toast("New update is available for 'UoM Wireless' application");
+                    else {
+                        operations.toast("New update is available for 'UoM Wireless' application");
                     }
-                    Log.i("qqq", "12");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (MainActivity.mainContext.checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+                ActivityCompat.requestPermissions((Activity)MainActivity.mainContext, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        } else { //permission is automatically granted on sdk<23 upon installation
+            return true;
+        }
+    }
+
+    public static void downloadNewAPK() {
+
+        String apk = "UoM_Wireless.apk";
+        String description = "Install this after downloading.";
+        Uri destinationFile = Uri.parse("file://" + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + apk);
+
+        DownloadManager downloadmanager = (DownloadManager) MainActivity.mainContext.getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse(apkurl);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+        request.setTitle(apk);
+        request.setDescription(description);
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationUri(destinationFile);
+        downloadmanager.enqueue(request);
     }
 }
 

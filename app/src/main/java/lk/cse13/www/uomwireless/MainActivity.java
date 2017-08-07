@@ -1,24 +1,14 @@
 package lk.cse13.www.uomwireless;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
+import android.content.pm.PackageManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.webkit.WebView;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.provider.Settings.Secure;
-
 
 public class MainActivity extends AppCompatActivity {
     private Operations operations;
@@ -51,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                 WifiInfo info = wifiManager.getConnectionInfo();
-                if (info.getSSID().toString().equalsIgnoreCase("\"ChanakaWiFi\"")) {
+                if (info.getSSID().toString().equalsIgnoreCase("\"UoM_Wireless\"")) {
                     if (loggedIn) {
                         operations.toast("Logging out...");
                         new BackgroundLogout(operations).execute();
@@ -65,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        operations.toast("Logging in...");
+        //operations.toast("Logging in...");
         new BackgroundLogin(operations, 0).execute();
 
 
@@ -80,6 +70,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         screenShowing = false;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        if(requestCode==1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Updates.downloadNewAPK();
+            } else {
+                operations.toast("Couldn't download update without permission");
+            }
+        }
     }
 
 }
