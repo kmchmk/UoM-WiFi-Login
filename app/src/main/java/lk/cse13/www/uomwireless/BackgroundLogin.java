@@ -38,6 +38,11 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
         WifiManager wifiManager = (WifiManager) mainContext.getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifiManager.getConnectionInfo();
         if (info.getSSID().toString().equalsIgnoreCase("\"UoM_Wireless\"")) {
+
+            if (isLoggedIn()) {
+                return "Already logged in";
+            }
+
             try {
                 MyHttpClient httpClient = new MyHttpClient();
 
@@ -59,10 +64,11 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 StatusLine statusLine = response.getStatusLine();
 
                 if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-                    Runtime runtime = Runtime.getRuntime();
-                    Process ipProcess = runtime.exec("/system/bin/ping -c 1 10.10.31.254");
-                    int exitValue = ipProcess.waitFor();
-                    if (exitValue == 0) {
+//                    Runtime runtime = Runtime.getRuntime();
+//                    Process ipProcess = runtime.exec("/system/bin/ping -c 1 10.10.31.254");
+//                    int exitValue = ipProcess.waitFor();
+//                    if (exitValue == 0) {
+                    if (isLoggedIn()) {
                         responseString = "Logged in";
                     }
                 }
@@ -79,12 +85,12 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         if (!message.equals("")) {//this means not connected to UoM Wireless. So ignore.
             operations.toast(message);
-            if (message.equals("Logged in")) {
+            if (message.equals("Logged in") || message.equals("Already logged in")) {
                 if (MainActivity.screenShowing) {
                     MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     MainActivity.loggedIn = true;
-                    new Updates(operations).execute();
                 }
+                new Updates(operations).execute();//check this one more
 
             } else {
                 if (trying < 10) {
@@ -100,6 +106,16 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
         }
     }
 
+    Boolean isLoggedIn() {
+        try {
+            Runtime runtime = Runtime.getRuntime();
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 10.10.31.254");
+            int exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 }
 
