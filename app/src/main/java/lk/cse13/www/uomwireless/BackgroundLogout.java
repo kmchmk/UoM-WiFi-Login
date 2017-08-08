@@ -23,6 +23,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
     private Operations operations;
     public BackgroundLogout(Operations operations) {
         this.operations = operations;
+        MainActivity.loggingfb.setEnabled(false);
     }
 
     @Override
@@ -71,6 +72,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
             MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             MainActivity.loggedIn = false;
         }
+        MainActivity.loggingfb.setEnabled(true);
     }
 }
 

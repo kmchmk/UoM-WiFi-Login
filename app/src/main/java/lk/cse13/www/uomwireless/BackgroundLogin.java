@@ -30,6 +30,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
     public BackgroundLogin(Operations operations, int trying) {
         this.operations = operations;
         this.trying = trying;
+        MainActivity.loggingfb.setEnabled(false);
     }
 
 
@@ -64,10 +65,6 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 StatusLine statusLine = response.getStatusLine();
 
                 if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-//                    Runtime runtime = Runtime.getRuntime();
-//                    Process ipProcess = runtime.exec("/system/bin/ping -c 1 10.10.31.254");
-//                    int exitValue = ipProcess.waitFor();
-//                    if (exitValue == 0) {
                     if (isLoggedIn()) {
                         responseString = "Logged in";
                     }
@@ -104,6 +101,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 }
             }
         }
+        MainActivity.loggingfb.setEnabled(true);
     }
 
     Boolean isLoggedIn() {
