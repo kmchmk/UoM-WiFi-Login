@@ -30,7 +30,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
     protected String doInBackground(String[] params) {
         WifiManager wifiManager = (WifiManager) MainActivity.mainContext.getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifiManager.getConnectionInfo();
-        if (info.getSSID().toString().equalsIgnoreCase("\"UoM_Wireless\"")) {
+        if (info.getSSID().equalsIgnoreCase("\"UoM_Wireless\"")) {
             try {
 
                 MyHttpClient httpClient = new MyHttpClient();

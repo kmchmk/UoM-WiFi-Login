@@ -30,7 +30,9 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
     public BackgroundLogin(Operations operations, int trying) {
         this.operations = operations;
         this.trying = trying;
-        MainActivity.loggingfb.setEnabled(false);
+        if (MainActivity.screenShowing) {
+            MainActivity.loggingfb.setEnabled(false);
+        }
     }
 
 
@@ -38,11 +40,13 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
     protected String doInBackground(String[] params) {
         WifiManager wifiManager = (WifiManager) mainContext.getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifiManager.getConnectionInfo();
-        if (info.getSSID().toString().equalsIgnoreCase("\"UoM_Wireless\"")) {
+        if (info.getSSID().equalsIgnoreCase("\"UoM_Wireless\"")) {
 
-            if (isLoggedIn()) {
-                return "Already logged in";
-            }
+
+//            This takes time before login in
+//            if (isLoggedIn()) {
+//                return "Already logged in";
+//            }
 
             try {
                 MyHttpClient httpClient = new MyHttpClient();
@@ -82,12 +86,12 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         if (!message.equals("")) {//this means not connected to UoM Wireless. So ignore.
             operations.toast(message);
-            if (message.equals("Logged in") || message.equals("Already logged in")) {
+            if (message.equals("Logged in")){// || message.equals("Already logged in")) { //Look at line 46
                 if (MainActivity.screenShowing) {
                     MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     MainActivity.loggedIn = true;
                 }
-                new Updates(operations).execute();//check this one more
+                new Updates(operations).execute();
 
             } else {
                 if (trying < 10) {
@@ -101,7 +105,9 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 }
             }
         }
-        MainActivity.loggingfb.setEnabled(true);
+        if (MainActivity.screenShowing) {
+            MainActivity.loggingfb.setEnabled(true);
+        }
     }
 
     Boolean isLoggedIn() {

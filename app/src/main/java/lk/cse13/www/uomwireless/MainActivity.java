@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                 WifiInfo info = wifiManager.getConnectionInfo();
-                if (info.getSSID().toString().equalsIgnoreCase("\"UoM_Wireless\"")) {
+                if (info.getSSID().equalsIgnoreCase("\"UoM_Wireless\"")) {
                     if (loggedIn) {
                         operations.toast("Logging out...");
                         new BackgroundLogout(operations).execute();

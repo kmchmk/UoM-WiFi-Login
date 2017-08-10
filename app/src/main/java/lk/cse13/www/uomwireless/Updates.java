@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -64,7 +65,7 @@ class Updates extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         if (!message.equals("false")) {
 
-            int thisAppVersion = 1;//change this everytime updating the app
+            int thisAppVersion = 0;//change this everytime updating the app
 
             try {
                 if (new JSONObject(message).getInt("newversion") > thisAppVersion) {
@@ -76,7 +77,7 @@ class Updates extends AsyncTask<String, Void, String> {
                     dlgAlert.setPositiveButton(jsonObject.getString("positivebutton"), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            //MainActivity.mainContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(apkurl)));
+                            MainActivity.mainContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(apkurl)));
                             if(isStoragePermissionGranted()) {
                                 downloadNewAPK();
                             }

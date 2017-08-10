@@ -12,6 +12,7 @@
     <string name="l2">2).\tEnter your index number and password.</string>
     <string name="l3">3).\tClick SAVE.</string>
     <string name="l4">4).\tFinally tap the login button at the bottom right corner.</string>
+    <string name="l5">5).\tIf you are using a Huawei phone and this application does not run on background, then try adding this app to protected apps list in your settings.</string>
     <string name="wearetrying">For windows: www.wearetrying.info/uomw</string>
     <string name="contact">Contact: kmchmk@gmail.com</string>
 

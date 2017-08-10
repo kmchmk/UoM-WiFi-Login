@@ -54,6 +54,16 @@
             android:layout_below="@+id/textView3"
             android:layout_marginTop="10dp"
             android:text="@string/l4" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_below="@+id/textView4"
+            android:layout_marginTop="10dp"
+            android:text="@string/l5" />
     </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
