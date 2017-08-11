@@ -3,8 +3,6 @@ package lk.cse13.www.uomwireless;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -39,9 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-                WifiInfo info = wifiManager.getConnectionInfo();
-                if (info.getSSID().equalsIgnoreCase("\"UoM_Wireless\"")) {
+                if(operations.isConnectedToUoMWireless()) {
                     if (loggedIn) {
                         operations.toast("Logging out...");
                         new BackgroundLogout(operations).execute();

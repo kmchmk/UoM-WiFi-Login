@@ -1,10 +1,7 @@
 package lk.cse13.www.uomwireless;
 
-import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 
 import org.apache.http.HttpResponse;
@@ -28,9 +25,8 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String[] params) {
-        WifiManager wifiManager = (WifiManager) MainActivity.mainContext.getSystemService(Context.WIFI_SERVICE);
-        WifiInfo info = wifiManager.getConnectionInfo();
-        if (info.getSSID().equalsIgnoreCase("\"UoM_Wireless\"")) {
+
+        if(operations.isConnectedToUoMWireless()) {
             try {
 
                 MyHttpClient httpClient = new MyHttpClient();
@@ -49,10 +45,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
                 StatusLine statusLine = response.getStatusLine();
 
                 if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-                    Runtime runtime = Runtime.getRuntime();
-                    Process ipProcess = runtime.exec("/system/bin/ping -c 1 -w 1 10.10.31.254");
-                    int exitValue = ipProcess.waitFor();
-                    if (exitValue != 0) {
+                    if (!operations.isLoggedIn()) {
                         responseString = "Logged out";
                     }
                 }
