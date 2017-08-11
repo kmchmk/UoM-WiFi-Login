@@ -71,7 +71,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         if (!message.equals("")) {//this means not connected to UoM Wireless. So ignore.
             operations.toast(message);
-            if (message.equals("Logged in")){// || message.equals("Already logged in")) { //Look at line 46
+            if (message.equals("Logged in")){
                 if (MainActivity.screenShowing) {
                     MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     MainActivity.loggedIn = true;
@@ -81,7 +81,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
             } else {
                 if (trying < 10) {
                     try {
-                        Thread.sleep(trying * 100);
+                        Thread.sleep(trying * 500);
                         operations.toast("Trying to login again...");
                         new BackgroundLogin(operations, trying + 1).execute();
                     } catch (InterruptedException e) {
