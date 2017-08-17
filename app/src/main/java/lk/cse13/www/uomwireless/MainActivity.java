@@ -79,5 +79,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void openSteps(View v){
+        Intent i = new Intent(getApplicationContext(), StepsActivity.class);
+        startActivity(i);
+
+    }
 
 }

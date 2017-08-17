@@ -53,17 +53,21 @@
             android:layout_alignStart="@+id/textView3"
             android:layout_below="@+id/textView3"
             android:layout_marginTop="10dp"
-            android:text="@string/l4" />
+            android:text="@string/l4"/>
 
-        <TextView
-            android:id="@+id/textView7"
+
+
+        <Button
+            android:id="@+id/see_steps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textView4"
             android:layout_alignStart="@+id/textView4"
             android:layout_below="@+id/textView4"
             android:layout_marginTop="10dp"
-            android:text="@string/l5" />
+            android:text="@string/l5"
+            android:textSize="12sp"
+            android:onClick="openSteps"/>
     </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
@@ -121,5 +125,7 @@
         android:layout_marginTop="60dp"
         android:autoLink="web"
         android:text="@string/wearetrying" />
+
+
 
 </RelativeLayout>

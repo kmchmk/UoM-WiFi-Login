@@ -12,8 +12,25 @@
     <string name="l2">2).\tEnter your index number and password.</string>
     <string name="l3">3).\tClick SAVE.</string>
     <string name="l4">4).\tFinally tap the login button at the bottom right corner.</string>
-    <string name="l5">5).\tIf you are using a Huawei phone and this application does not run on background, then try adding this app to protected apps list in your settings.</string>
+    <string name="l5">If you are using a Huawei phone, follow these steps.</string>
+    <string name="l6">5).\tIf you are using a Huawei phone and this application does not run on background, then try adding this app to protected apps list in your settings.</string>
     <string name="wearetrying">For windows: www.wearetrying.info/uomw</string>
     <string name="contact">Contact: kmchmk@gmail.com</string>
+    <string name="title_activity_steps">StepsActivity</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+    </string>
+    <string name="action_settings">Settings</string>
 
 </resources>
