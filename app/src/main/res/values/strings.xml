@@ -7,30 +7,33 @@
     <string name="clear_all">Clear All</string>
     <string name="logged_in_status">Logged Status</string>
 
+    <string name="description">
+        \tThis application can be used to login in to UoM Wireless wi-fi connection without entering username and pasword again and again. When you connect to UoM Wireless wi-fi, app will automatically log you in.\n
+        Feel free to let me know if you have any problems or suggestions.
+    </string>
 
     <string name="l1">1).\tTap the settings button at bottom left corner.</string>
     <string name="l2">2).\tEnter your index number and password.</string>
     <string name="l3">3).\tClick SAVE.</string>
     <string name="l4">4).\tFinally tap the login button at the bottom right corner.</string>
-    <string name="l5">If you are using a Huawei phone, follow these steps.</string>
-    <string name="l6">5).\tIf you are using a Huawei phone and this application does not run on background, then try adding this app to protected apps list in your settings.</string>
+    <string name="if_huawei_button">If you are using a Huawei phone, follow these steps.</string>
+
+
     <string name="wearetrying">For windows: www.wearetrying.info/uomw</string>
     <string name="contact">Contact: kmchmk@gmail.com</string>
-    <string name="title_activity_steps">StepsActivity</string>
-    <string name="large_text">
-        "Material is the metaphor.\n\n"
 
-        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
-        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
-        "technologically advanced and open to imagination and magic.\n"
-        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
-        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
-        "flexibility of the material creates new affordances that supercede those in the physical "
-        "world, without breaking the rules of physics.\n"
-        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
-        "interact, and exist in space and in relation to each other. Realistic lighting shows "
-        "seams, divides space, and indicates moving parts.\n\n"
+    <string name="if_huawei">
+        \tIf this application does not run on background, try adding this app to protected apps list in your settings.\n
+        \tIf you are using a Huawei GR5 2017 (Nougat) model then follow the steps below."
     </string>
+
+    <string name="step1">Step 1).\tGo to Settings and Click Apps</string>
+    <string name="step2">Step 2).\tClick Settings icon</string>
+    <string name="step3">Step 3).\tGo to Special access</string>
+    <string name="step4">Step 4).\tSelect Ignore Optimizations</string>
+    <string name="step5">Step 5).\tList All apps and click on UoM Wireless application</string>
+    <string name="step6">Step 6).\tCheck Allow option and hit OK</string>
+
     <string name="action_settings">Settings</string>
 
 </resources>

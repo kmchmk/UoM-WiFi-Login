@@ -32,7 +32,6 @@
 
         <activity
             android:name=".StepsActivity"
-            android:label="@string/title_activity_steps"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

@@ -1,19 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="lk.cse13.www.uomwireless.StepsActivity">
-    <!--tools:showIn="@layout/activity_steps"-->
 
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/if_huawei"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="50dp"
+            android:text="@string/if_huawei"
+            android:layout_margin="@dimen/text_margin"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/st1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_below="@+id/if_huawei"
+            android:layout_marginTop="40dp"
+            android:text="@string/step1"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ss1"
+            android:layout_width="@dimen/image_width"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_below="@+id/st1"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ss1" />
+
+        <TextView
+            android:id="@+id/st2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/st1"
+            android:layout_alignStart="@+id/st1"
+            android:layout_below="@+id/ss1"
+            android:layout_marginTop="40dp"
+            android:text="@string/step2"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ss2"
+            android:layout_width="@dimen/image_width"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ss2"
+            android:layout_below="@+id/st2"
+            android:layout_alignLeft="@+id/ss1"
+            android:layout_alignStart="@+id/ss1"/>
+
+        <TextView
+            android:id="@+id/st3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/st1"
+            android:layout_alignStart="@+id/st1"
+            android:layout_below="@+id/ss2"
+            android:layout_marginTop="40dp"
+            android:text="@string/step3"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ss3"
+            android:layout_width="@dimen/image_width"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ss3"
+            android:layout_below="@+id/st3"
+            android:layout_alignLeft="@+id/ss1"
+            android:layout_alignStart="@+id/ss1" />
+
+        <TextView
+            android:id="@+id/st4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/st1"
+            android:layout_alignStart="@+id/st1"
+            android:layout_below="@+id/ss3"
+            android:layout_marginTop="40dp"
+            android:text="@string/step4"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ss4"
+            android:layout_width="@dimen/image_width"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ss4"
+            android:layout_below="@+id/st4"
+            android:layout_alignLeft="@+id/ss1"
+            android:layout_alignStart="@+id/ss1" />
+
+        <TextView
+            android:id="@+id/st5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/st1"
+            android:layout_alignStart="@+id/st1"
+            android:layout_below="@+id/ss4"
+            android:layout_marginTop="40dp"
+            android:text="@string/step5"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ss5"
+            android:layout_width="@dimen/image_width"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ss5"
+            android:layout_below="@+id/st5"
+            android:layout_alignLeft="@+id/ss1"
+            android:layout_alignStart="@+id/ss1" />
+
+        <TextView
+            android:id="@+id/st6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/st1"
+            android:layout_alignStart="@+id/st1"
+            android:layout_below="@+id/ss5"
+            android:layout_marginTop="40dp"
+            android:text="@string/step6"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"  />
+
+        <ImageView
+            android:id="@+id/ss6"
+            android:layout_width="@dimen/image_width"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ss6"
+            android:layout_below="@+id/st6"
+            android:layout_alignLeft="@+id/ss1"
+            android:layout_alignStart="@+id/ss1"
+            android:layout_marginBottom="50dp"/>
+
+    </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>
