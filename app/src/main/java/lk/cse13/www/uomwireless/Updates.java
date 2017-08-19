@@ -65,7 +65,7 @@ class Updates extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         if (!message.equals("false")) {
 
-            int thisAppVersion = 2;//change this everytime updating the app
+            int thisAppVersion = 1;//change this everytime updating the app
 
             try {
                 if (new JSONObject(message).getInt("newversion") > thisAppVersion) {

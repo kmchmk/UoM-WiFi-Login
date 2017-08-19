@@ -2,7 +2,7 @@
     $jsonObj = new stdClass();
     $jsonObj->newversion = 2;
     $jsonObj->title = "New Update";
-    $jsonObj->message = "A new update (2.47MB) is available for this application.\n * Performance improved.\n* Bugs fixed.\n* Background login is now supported for Huawei devices.\n* (If nothing happens when you click \"DOWNLOAD\", contact me)\n* (Use another browser other than Chrome)";
+    $jsonObj->message = "A new update (1.67MB) is available for this application.\n * Performance improved.\n* Bugs fixed.\n* Background login is now supported for Huawei devices.\n* (If nothing happens when you click \"DOWNLOAD\", try download manually from www.uomwireless.tk)\n* (Use another browser other than Chrome)";
     $jsonObj->positivebutton = "DOWNLOAD";
     $jsonObj->negativebutton = "Cancel";
     // $jsonObj->apkurl = "https://www.dropbox.com/sh/bmmfxrx2yfpjf59/AACIXoJ7_RnSnmTeoZEpkEeDa?dl=0";

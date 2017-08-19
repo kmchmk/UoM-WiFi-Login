@@ -10,7 +10,6 @@ import org.apache.http.impl.conn.SingleClientConnManager;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -23,24 +22,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 public class MyHttpClient extends DefaultHttpClient {
-    TrustManager easyTrustManager = new X509TrustManager() {
-        @Override
-        public void checkClientTrusted(
-                X509Certificate[] chain,
-                String authType) {
-        }
-
-        @Override
-        public void checkServerTrusted(
-                X509Certificate[] chain,
-                String authType) {
-        }
-
-        @Override
-        public X509Certificate[] getAcceptedIssuers() {
-            return null;
-        }
-    };
 
     @Override
     protected ClientConnectionManager createClientConnectionManager() {
@@ -55,11 +36,7 @@ public class MyHttpClient extends DefaultHttpClient {
     private MySSLSocketFactory newSslSocketFactory() {
         try {
             KeyStore trusted = KeyStore.getInstance("BKS");
-            try {
-                trusted.load(null, null);
-
-            } finally {
-            }
+            trusted.load(null, null);
 
             MySSLSocketFactory sslfactory = new MySSLSocketFactory(trusted);
             sslfactory.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
@@ -92,7 +69,7 @@ public class MyHttpClient extends DefaultHttpClient {
         }
 
         @Override
-        public Socket createSocket(Socket socket, String host, int port, boolean autoClose) throws IOException, UnknownHostException {
+        public Socket createSocket(Socket socket, String host, int port, boolean autoClose) throws IOException {
             return sslContext.getSocketFactory().createSocket(socket, host, port, autoClose);
         }
 

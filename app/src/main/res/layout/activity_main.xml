@@ -70,7 +70,6 @@
             android:onClick="openSteps"/>
 
         <TextView
-            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/ste3"
@@ -78,7 +77,8 @@
             android:layout_below="@+id/see_steps"
             android:layout_marginTop="10dp"
             android:text="@string/description"
-            android:textAlignment="textStart" />
+            android:textAlignment="textStart"
+            android:gravity="start"/>
 
     </RelativeLayout>
 
@@ -115,7 +115,6 @@
         tools:ignore="RelativeOverlap" />
 
     <TextView
-        android:id="@+id/contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/relativeLayout"
@@ -127,7 +126,6 @@
 
 
     <TextView
-        android:id="@+id/wearetrying"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/settingsfb"

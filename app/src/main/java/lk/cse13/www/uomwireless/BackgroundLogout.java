@@ -33,7 +33,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
 
                 HttpPost httpPost = new HttpPost("https://wlan.uom.lk/logout.html");
 
-                List<NameValuePair> para = new ArrayList<NameValuePair>();
+                List<NameValuePair> para = new ArrayList<>();
 
                 para.add(new BasicNameValuePair("userStatus", "1"));
                 para.add(new BasicNameValuePair("err_flag", "0"));

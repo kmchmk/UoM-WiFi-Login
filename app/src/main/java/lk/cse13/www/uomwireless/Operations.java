@@ -43,7 +43,7 @@ public class Operations {
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
+                String receiveString;
                 StringBuilder stringBuilder = new StringBuilder();
 
                 while ((receiveString = bufferedReader.readLine()) != null) {
@@ -76,10 +76,6 @@ public class Operations {
     public boolean isConnectedToUoMWireless() {
         WifiManager wifiManager = (WifiManager) MainActivity.mainContext.getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifiManager.getConnectionInfo();
-        if (info.getSSID().equalsIgnoreCase("\"UoM_Wireless\"")) {
-            return true;
-        } else {
-            return false;
-        }
+        return info.getSSID().equalsIgnoreCase("\"UoM_Wireless\"");
     }
 }

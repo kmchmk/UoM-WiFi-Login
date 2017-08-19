@@ -161,7 +161,6 @@
             android:textStyle="bold"  />
 
         <ImageView
-            android:id="@+id/ss6"
             android:layout_width="@dimen/image_width"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"

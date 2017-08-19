@@ -5,7 +5,6 @@
     <string name="action_sign_in">Save</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="clear_all">Clear All</string>
-    <string name="logged_in_status">Logged Status</string>
 
     <string name="description">
         \tThis application can be used to login in to UoM Wireless wi-fi connection without entering username and pasword again and again. When you connect to UoM Wireless wi-fi, app will automatically log you in.\n
@@ -33,7 +32,5 @@
     <string name="step4">Step 4).\tSelect Ignore Optimizations</string>
     <string name="step5">Step 5).\tList All apps and click on UoM Wireless application</string>
     <string name="step6">Step 6).\tCheck Allow option and hit OK</string>
-
-    <string name="action_settings">Settings</string>
 
 </resources>

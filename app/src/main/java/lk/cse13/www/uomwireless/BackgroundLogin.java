@@ -38,7 +38,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
 
                 HttpPost httpPost = new HttpPost("https://wlan.uom.lk/login.html");
 
-                List<NameValuePair> para = new ArrayList<NameValuePair>();
+                List<NameValuePair> para = new ArrayList<>();
                 para.add(new BasicNameValuePair("buttonClicked", "4"));
                 para.add(new BasicNameValuePair("err_flag", "0"));
                 para.add(new BasicNameValuePair("err_msg", ""));
