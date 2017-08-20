@@ -65,7 +65,7 @@ class Updates extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         if (!message.equals("false")) {
 
-            int thisAppVersion = 1;//change this everytime updating the app
+            int thisAppVersion = 2;//change this everytime updating the app
 
             try {
                 if (new JSONObject(message).getInt("newversion") > thisAppVersion) {
@@ -90,6 +90,9 @@ class Updates extends AsyncTask<String, Void, String> {
                     }
                     else {
                         operations.toast("New update is available for 'UoM Wireless' application");
+                        if(operations.isHuawei()){
+                            StatusNotification.notify(MainActivity.mainContext,"Update:", "New update is available for 'UoM Wireless' application!");
+                        }
                     }
                 }
             } catch (JSONException e) {

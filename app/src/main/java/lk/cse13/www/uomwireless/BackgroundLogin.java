@@ -32,7 +32,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String[] params) {
-        if(operations.isConnectedToUoMWireless()) {
+        if (operations.isConnectedToUoMWireless()) {
             try {
                 MyHttpClient httpClient = new MyHttpClient();
 
@@ -71,10 +71,16 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         if (!message.equals("")) {//this means not connected to UoM Wireless. So ignore.
             operations.toast(message);
-            if (message.equals("Logged in")){
+
+            if (message.equals("Logged in")) {
                 if (MainActivity.screenShowing) {
                     MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     MainActivity.loggedIn = true;
+                }
+                else{
+                    if (operations.isHuawei()) {
+                        StatusNotification.notify(MainActivity.mainContext, "Status:", "Logged in successfully!");
+                    }
                 }
                 new Updates(operations).execute();
 

@@ -78,4 +78,8 @@ public class Operations {
         WifiInfo info = wifiManager.getConnectionInfo();
         return info.getSSID().equalsIgnoreCase("\"UoM_Wireless\"");
     }
+
+    public boolean isHuawei(){
+        return true;
+    }
 }
