@@ -76,15 +76,16 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 if (MainActivity.screenShowing) {
                     MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     MainActivity.loggedIn = true;
+                } else if (operations.isHuawei()) {
+                    StatusNotification.notify(MainActivity.mainContext, "Status:", "Logged in successfully!");
                 }
                 else{
-                    if (operations.isHuawei()) {
-                        StatusNotification.notify(MainActivity.mainContext, "Status:", "Logged in successfully!");
-                    }
+                    StatusNotification.cancel(MainActivity.mainContext);
                 }
                 new Updates(operations).execute();
 
             } else {
+                StatusNotification.cancel(MainActivity.mainContext);
                 if (trying < 10) {
                     try {
                         Thread.sleep(trying * 500);
@@ -93,6 +94,9 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                }
+                else{
+                    StatusNotification.notify(MainActivity.mainContext, "Error:", "Couldn't log in!");
                 }
             }
         }

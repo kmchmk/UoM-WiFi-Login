@@ -64,6 +64,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
         if (message.equals("Logged out")) {
             MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             MainActivity.loggedIn = false;
+            StatusNotification.notify(MainActivity.mainContext, "Status:", "You are NOT logged in!");
         }
         MainActivity.loggingfb.setEnabled(true);
     }

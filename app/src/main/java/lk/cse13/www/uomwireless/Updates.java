@@ -30,15 +30,17 @@ import java.net.URI;
 import android.provider.Settings.Secure;
 
 
-class Updates extends AsyncTask<String, Void, String> {
-    private Operations operations;
+class Updates extends AsyncTask<String, Void, Boolean> {
+    //private Operations operations;
     private static String apkurl = "";
-    public Updates(Operations operations) {
-        this.operations = operations;
-    }
+    private String responseString;
+
+//    public Updates(Operations operations) {
+//        this.operations = operations;
+//    }
 
     @Override
-    protected String doInBackground(String[] params) {
+    protected Boolean doInBackground(String[] params) {
         String android_id = Secure.getString(MainActivity.mainContext.getContentResolver(), Secure.ANDROID_ID);
         String versionURL = "http://13.58.202.127/UoM_Wireless_App/version.php?device=" + android_id;
         try {
@@ -49,27 +51,27 @@ class Updates extends AsyncTask<String, Void, String> {
             if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
                 response.getEntity().writeTo(out);
-                String responseString = out.toString();
+                responseString = out.toString();
                 out.close();
-                return responseString;
+                return true;
             } else {
                 response.getEntity().getContent().close();
-                return "false";
+                return false;
             }
         } catch (Exception e) {
-            return "false";
+            return false;
         }
     }
 
     @Override
-    protected void onPostExecute(String message) {
-        if (!message.equals("false")) {
+    protected void onPostExecute(Boolean isUpdateAvailable) {
+        if (isUpdateAvailable) {
 
             int thisAppVersion = 2;//change this everytime updating the app
 
             try {
-                if (new JSONObject(message).getInt("newversion") > thisAppVersion) {
-                    JSONObject jsonObject = new JSONObject(message);
+                if (new JSONObject(responseString).getInt("newversion") > thisAppVersion) {
+                    JSONObject jsonObject = new JSONObject(responseString);
                     apkurl = jsonObject.getString("apkurl");
                     AlertDialog.Builder dlgAlert = new AlertDialog.Builder(MainActivity.mainContext);
                     dlgAlert.setMessage(jsonObject.getString("message"));
@@ -78,7 +80,7 @@ class Updates extends AsyncTask<String, Void, String> {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             MainActivity.mainContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(apkurl)));
-                            if(isStoragePermissionGranted()) {
+                            if (isStoragePermissionGranted()) {
                                 downloadNewAPK();
                             }
                         }
@@ -87,12 +89,8 @@ class Updates extends AsyncTask<String, Void, String> {
                     dlgAlert.create();
                     if (MainActivity.screenShowing) {
                         dlgAlert.show();
-                    }
-                    else {
-                        operations.toast("New update is available for 'UoM Wireless' application");
-                        if(operations.isHuawei()){
-                            StatusNotification.notify(MainActivity.mainContext,"Update:", "New update is available for 'UoM Wireless' application!");
-                        }
+                    } else {
+                        StatusNotification.notify(MainActivity.mainContext, "Update:", "New update is available for 'UoM Wireless' application!");
                     }
                 }
             } catch (JSONException e) {
@@ -107,7 +105,7 @@ class Updates extends AsyncTask<String, Void, String> {
             if (MainActivity.mainContext.checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 return true;
             } else {
-                ActivityCompat.requestPermissions((Activity)MainActivity.mainContext, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                ActivityCompat.requestPermissions((Activity) MainActivity.mainContext, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 return false;
             }
         } else { //permission is automatically granted on sdk<23 upon installation
