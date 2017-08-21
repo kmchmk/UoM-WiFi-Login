@@ -35,6 +35,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String[] params) {
+        StatusNotification.cancel(MainActivity.mainContext);
         if (operations.isConnectedToUoMWireless()) {
             try {
                 MyHttpClient httpClient = new MyHttpClient();
@@ -80,16 +81,16 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 if (MainActivity.screenShowing) {
                     MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     MainActivity.loggedIn = true;
-                } else if (operations.isNotificationEnabled()) {
+                }
+
+                else if (operations.isNotificationEnabled()) {
                     StatusNotification.notify(MainActivity.mainContext, "Status:", "Logged in successfully!");
                 }
-                else{
-                    StatusNotification.cancel(MainActivity.mainContext);
-                }
+
                 new Updates().execute();
 
             } else {
-                StatusNotification.cancel(MainActivity.mainContext);
+//                StatusNotification.cancel(MainActivity.mainContext);
                 if (trying < 10) {
                     try {
                         Thread.sleep(trying * 500);
