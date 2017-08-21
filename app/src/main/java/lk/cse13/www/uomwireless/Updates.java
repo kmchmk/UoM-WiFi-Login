@@ -28,6 +28,7 @@ import java.io.ByteArrayOutputStream;
 import java.net.URI;
 
 import android.provider.Settings.Secure;
+import android.util.Log;
 
 
 class Updates extends AsyncTask<String, Void, Boolean> {
@@ -64,13 +65,13 @@ class Updates extends AsyncTask<String, Void, Boolean> {
     }
 
     @Override
-    protected void onPostExecute(Boolean isUpdateAvailable) {
-        if (isUpdateAvailable) {
+    protected void onPostExecute(Boolean succesful) {
+        if (succesful) {
 
-            int thisAppVersion = 2;//change this everytime updating the app
+            //change the version in build.gradle everytime updating the app
 
             try {
-                if (new JSONObject(responseString).getInt("newversion") > thisAppVersion) {
+                if (new JSONObject(responseString).getInt("newversion") > BuildConfig.VERSION_CODE) {
                     JSONObject jsonObject = new JSONObject(responseString);
                     apkurl = jsonObject.getString("apkurl");
                     AlertDialog.Builder dlgAlert = new AlertDialog.Builder(MainActivity.mainContext);

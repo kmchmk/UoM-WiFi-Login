@@ -82,7 +82,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 else{
                     StatusNotification.cancel(MainActivity.mainContext);
                 }
-                new Updates(operations).execute();
+                new Updates().execute();
 
             } else {
                 StatusNotification.cancel(MainActivity.mainContext);

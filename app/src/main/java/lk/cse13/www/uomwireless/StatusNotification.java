@@ -1,9 +1,11 @@
 package lk.cse13.www.uomwireless;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
@@ -22,7 +24,9 @@ public class StatusNotification {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setLargeIcon(picture)
                 //.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com")), PendingIntent.FLAG_UPDATE_CURRENT))
-                .setAutoCancel(true);
+                .setAutoCancel(true)
+                .setContentIntent(PendingIntent.getActivity(context, 0,new Intent(context, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT));
+
 
         notify(context, builder.build());
     }

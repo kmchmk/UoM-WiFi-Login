@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                if(operations.isConnectedToUoMWireless()) {
+                if (operations.isConnectedToUoMWireless()) {
                     if (loggedIn) {
                         operations.toast("Logging out...");
                         new BackgroundLogout(operations).execute();
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         });
         //operations.toast("Logging in...");
         new BackgroundLogin(operations, 0).execute();
-
+        StatusNotification.cancel(mainContext);
 
     }
 
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-        if(requestCode==1) {
+        if (requestCode == 1) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Updates.downloadNewAPK();
             } else {
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void openSteps(View v){
+    public void openSteps(View v) {
         Intent i = new Intent(getApplicationContext(), StepsActivity.class);
         startActivity(i);
 
