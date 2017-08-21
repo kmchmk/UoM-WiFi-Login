@@ -1,6 +1,7 @@
 package lk.cse13.www.uomwireless;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.widget.Toast;
@@ -11,6 +12,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class Operations {
@@ -41,7 +44,8 @@ public class Operations {
         return info.getSSID().equalsIgnoreCase("\"UoM_Wireless\"");
     }
 
-    public boolean isHuawei(){
-        return true;
+    public boolean isNotificationEnabled(){
+        SharedPreferences preferences = MainActivity.mainContext.getSharedPreferences("notification_preferences", MODE_PRIVATE);
+        return (preferences.getBoolean("enabled",true));
     }
 }

@@ -80,7 +80,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 if (MainActivity.screenShowing) {
                     MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     MainActivity.loggedIn = true;
-                } else if (operations.isHuawei()) {
+                } else if (operations.isNotificationEnabled()) {
                     StatusNotification.notify(MainActivity.mainContext, "Status:", "Logged in successfully!");
                 }
                 else{

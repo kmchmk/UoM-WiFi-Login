@@ -32,13 +32,8 @@ import android.util.Log;
 
 
 class Updates extends AsyncTask<String, Void, Boolean> {
-    //private Operations operations;
     private static String apkurl = "";
     private String responseString;
-
-//    public Updates(Operations operations) {
-//        this.operations = operations;
-//    }
 
     @Override
     protected Boolean doInBackground(String[] params) {

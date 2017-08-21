@@ -33,4 +33,6 @@
     <string name="step5">Step 5).\tList All apps and click on UoM Wireless application</string>
     <string name="step6">Step 6).\tCheck Allow option and hit OK</string>
 
+    <string name="notification_preference">Enable notifications</string>
+
 </resources>

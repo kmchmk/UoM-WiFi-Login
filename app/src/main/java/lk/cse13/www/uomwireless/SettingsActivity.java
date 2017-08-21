@@ -7,13 +7,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 
 public class SettingsActivity extends AppCompatActivity {
     private EditText indexbox;
     private EditText passwordbox;
-
+private CheckBox checkBox;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +25,18 @@ public class SettingsActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences("index_password", MODE_PRIVATE);
         indexbox.setText(settings.getString("index", ""));
         passwordbox.setText(settings.getString("password", ""));
-        Log.i("qqq", Integer.toString(MODE_PRIVATE));
+
+
+        checkBox = (CheckBox)findViewById(R.id.enable_notification);
+
+        SharedPreferences preferences = getSharedPreferences("notification_preferences", MODE_PRIVATE);
+        if(preferences.getBoolean("enabled",true)){
+            checkBox.setChecked(true);
+        }
+        else{
+            checkBox.setChecked(false);
+        }
+
     }
 
     public void save(View view) {
@@ -33,7 +45,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         SharedPreferences settings = getSharedPreferences("index_password", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-
         editor.putString("index", index);
         editor.putString("password", password);
         editor.commit();
@@ -44,6 +55,18 @@ public class SettingsActivity extends AppCompatActivity {
         indexbox.setText("");
         passwordbox.setText("");
         getSharedPreferences("index_password", MODE_PRIVATE).edit().clear().commit();
+    }
+
+    public void savePreferences(View v) {
+        SharedPreferences settings = getSharedPreferences("notification_preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+                if(checkBox.isChecked()){
+            editor.putBoolean("enabled",true);
+        }
+        else{
+            editor.putBoolean("enabled",false);
+        }
+        editor.commit();
     }
 }
 
