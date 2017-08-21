@@ -1,7 +1,10 @@
 package lk.cse13.www.uomwireless;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,45 +13,37 @@ import android.widget.EditText;
 public class SettingsActivity extends AppCompatActivity {
     private EditText indexbox;
     private EditText passwordbox;
-    private Operations operations;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        operations = new Operations();
         indexbox = (EditText) findViewById(R.id.indexbox);
         passwordbox = (EditText) findViewById(R.id.passwordbox);
-        Button saveLoginButton = (Button) findViewById(R.id.save_button);
-        Button clearAll = (Button) findViewById(R.id.clear_all);
+        SharedPreferences settings = getSharedPreferences("index_password", MODE_PRIVATE);
+        indexbox.setText(settings.getString("index", ""));
+        passwordbox.setText(settings.getString("password", ""));
+        Log.i("qqq", Integer.toString(MODE_PRIVATE));
+    }
 
-        indexbox.setText(operations.readFromFile("ind"));
-        passwordbox.setText(operations.readFromFile("psd"));
+    public void save(View view) {
+        String index = indexbox.getText().toString();
+        String password = passwordbox.getText().toString();
 
-        saveLoginButton.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    public void onClick(View view)
-                    {
-                        String index = indexbox.getText().toString();
-                        String password = passwordbox.getText().toString();
-                        operations.writeToFile(index,"ind");
-                        operations.writeToFile(password,"psd");
-                        finish();
-                    }
-                });
+        SharedPreferences settings = getSharedPreferences("index_password", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
 
-        clearAll.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    public void onClick(View view)
-                    {
-                        indexbox.setText("");
-                        passwordbox.setText("");
-                        operations.writeToFile("","ind");
-                        operations.writeToFile("","psd");
-                    }
-                });
+        editor.putString("index", index);
+        editor.putString("password", password);
+        editor.commit();
+        finish();
+    }
+
+    public void clearAll(View view) {
+        indexbox.setText("");
+        passwordbox.setText("");
+        getSharedPreferences("index_password", MODE_PRIVATE).edit().clear().commit();
     }
 }
 

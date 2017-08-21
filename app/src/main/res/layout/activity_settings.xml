@@ -52,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
+                android:onClick="save"
                 android:textStyle="bold" />
 
             <Button
@@ -61,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/clear_all"
+                android:onClick="clearAll"
                 android:textStyle="bold" />
 
         </LinearLayout>

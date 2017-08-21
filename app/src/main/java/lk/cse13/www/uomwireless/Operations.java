@@ -24,44 +24,6 @@ public class Operations {
         toastvariable.show();
     }
 
-    public void writeToFile(String data, String file) {
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(MainActivity.mainContext.openFileOutput(file, Context.MODE_PRIVATE));
-            outputStreamWriter.write(data);
-            outputStreamWriter.close();
-        } catch (IOException e) {
-            toast("Cannot save username or password");
-        }
-    }
-
-    public String readFromFile(String file) {
-
-        String ret = "";
-        try {
-            InputStream inputStream = MainActivity.mainContext.openFileInput(file);
-
-            if (inputStream != null) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString;
-                StringBuilder stringBuilder = new StringBuilder();
-
-                while ((receiveString = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(receiveString);
-                }
-
-                inputStream.close();
-                ret = stringBuilder.toString();
-            }
-        } catch (FileNotFoundException e) {
-            toast("Username or Password not found");
-        } catch (IOException e) {
-            toast("Cannot read username or password");
-        }
-
-        return ret;
-    }
-
     public boolean isLoggedIn() {
         try {
             Runtime runtime = Runtime.getRuntime();
