@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-    private Operations operations;
     public static FloatingActionButton loggingfb;
     public static boolean loggedIn = false;
     public static boolean screenShowing = false;
@@ -20,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        operations = new Operations();
         mainContext = MainActivity.this;
 
         FloatingActionButton settingsfb = (FloatingActionButton) findViewById(R.id.settingsfb);
@@ -38,22 +36,21 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                if (operations.isConnectedToUoMWireless()) {
+                if (Operations.isConnectedToUoMWireless()) {
                     if (loggedIn) {
-                        operations.toast("Logging out...");
-                        new BackgroundLogout(operations).execute();
+                        Operations.toast("Logging out...");
+                        new BackgroundLogout().execute();
                     } else {
-                        operations.toast("Logging in...");
-                        new BackgroundLogin(operations, 0).execute();
+                        Operations.toast("Logging in...");
+                        new BackgroundLogin( 0).execute();
                     }
                 } else {
-                    operations.toast("Connect to UoM Wireless first");
+                    Operations.toast("Connect to UoM Wireless first");
                 }
 
             }
         });
-        //operations.toast("Logging in...");
-        new BackgroundLogin(operations, 0).execute();
+        new BackgroundLogin( 0).execute();
         StatusNotification.cancel(mainContext);
 
     }
@@ -75,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Updates.downloadNewAPK();
             } else {
-                operations.toast("Couldn't download update without permission");
+                Operations.toast("Couldn't download update without permission");
             }
         }
     }

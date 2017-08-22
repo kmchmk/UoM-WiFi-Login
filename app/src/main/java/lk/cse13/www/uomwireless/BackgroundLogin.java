@@ -21,11 +21,9 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 public class BackgroundLogin extends AsyncTask<String, Void, String> {
-    private Operations operations;
     private int trying;
 
-    public BackgroundLogin(Operations operations, int trying) {
-        this.operations = operations;
+    public BackgroundLogin( int trying) {
         this.trying = trying;
         if (MainActivity.screenShowing) {
             MainActivity.loggingfb.setEnabled(false);
@@ -36,7 +34,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String[] params) {
         StatusNotification.cancel(MainActivity.mainContext);
-        if (operations.isConnectedToUoMWireless()) {
+        if (Operations.isConnectedToUoMWireless()) {
             try {
                 MyHttpClient httpClient = new MyHttpClient();
 
@@ -59,7 +57,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 StatusLine statusLine = response.getStatusLine();
 
                 if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-                    if (operations.isLoggedIn()) {
+                    if (Operations.isLoggedIn()) {
                         responseString = "Logged in";
                     }
                 }
@@ -75,7 +73,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String message) {
         if (!message.equals("")) {//this means not connected to UoM Wireless. So ignore.
-            operations.toast(message);
+            Operations.toast(message);
 
             if (message.equals("Logged in")) {
                 if (MainActivity.screenShowing) {
@@ -83,7 +81,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                     MainActivity.loggedIn = true;
                 }
 
-                else if (operations.isNotificationEnabled()) {
+                else if (Operations.isNotificationEnabled()) {
                     StatusNotification.notify(MainActivity.mainContext, "Status:", "Logged in successfully!");
                 }
 
@@ -94,8 +92,8 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 if (trying < 10) {
                     try {
                         Thread.sleep(trying * 500);
-                        operations.toast("Trying to login again...");
-                        new BackgroundLogin(operations, trying + 1).execute();
+                        Operations.toast("Trying to login again...");
+                        new BackgroundLogin( trying + 1).execute();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

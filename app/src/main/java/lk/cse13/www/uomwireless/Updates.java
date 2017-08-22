@@ -28,7 +28,6 @@ import java.io.ByteArrayOutputStream;
 import java.net.URI;
 
 import android.provider.Settings.Secure;
-import android.util.Log;
 
 
 class Updates extends AsyncTask<String, Void, Boolean> {

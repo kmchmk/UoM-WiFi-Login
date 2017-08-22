@@ -17,16 +17,14 @@ import java.util.List;
 
 
 public class BackgroundLogout extends AsyncTask<String, Void, String> {
-    private Operations operations;
-    public BackgroundLogout(Operations operations) {
-        this.operations = operations;
+    public BackgroundLogout() {
         MainActivity.loggingfb.setEnabled(false);
     }
 
     @Override
     protected String doInBackground(String[] params) {
 
-        if(operations.isConnectedToUoMWireless()) {
+        if(Operations.isConnectedToUoMWireless()) {
             try {
 
                 MyHttpClient httpClient = new MyHttpClient();
@@ -45,7 +43,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
                 StatusLine statusLine = response.getStatusLine();
 
                 if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-                    if (!operations.isLoggedIn()) {
+                    if (!Operations.isLoggedIn()) {
                         responseString = "Logged out";
                     }
                 }
@@ -60,7 +58,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String message) {
-        operations.toast(message);
+        Operations.toast(message);
         if (message.equals("Logged out")) {
             MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             MainActivity.loggedIn = false;
