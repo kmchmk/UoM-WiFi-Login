@@ -85,10 +85,9 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                     StatusNotification.notify(MainActivity.mainContext, "Status:", "Logged in successfully!");
                 }
 
-                new Updates().execute();
+                new Statistics().execute();
 
             } else {
-//                StatusNotification.cancel(MainActivity.mainContext);
                 if (trying < 10) {
                     try {
                         Thread.sleep(trying * 500);

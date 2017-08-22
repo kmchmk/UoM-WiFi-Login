@@ -1,12 +1,12 @@
 <?php
     $jsonObj = new stdClass();
-    $jsonObj->newversion = 2;
-    $jsonObj->title = "New Update";
-    $jsonObj->message = "A new update (1.67MB) is available for this application.\n * Performance improved.\n* Bugs fixed.\n* Background login is now supported for Huawei devices.\n* (If nothing happens when you click \"DOWNLOAD\", try download manually from www.uomwireless.tk)\n* (Use another browser other than Chrome)";
-    $jsonObj->positivebutton = "DOWNLOAD";
+    $jsonObj->newversion = 0;
+    $jsonObj->title = "Available on Playstore";
+    $jsonObj->message = "You can now download this application on Google Playstore. \n* Search for 'UoM Wireless Login'";
+    $jsonObj->positivebutton = "Go to Playstore";
     $jsonObj->negativebutton = "Cancel";
-    // $jsonObj->apkurl = "https://www.dropbox.com/sh/bmmfxrx2yfpjf59/AACIXoJ7_RnSnmTeoZEpkEeDa?dl=0";
-    $jsonObj->apkurl = "http://13.58.202.127/UoM_Wireless_App/UoM_Wireless.apk";
+    $jsonObj->apkurl = "https://play.google.com/store/apps/details?id=lk.cse13.www.uomwireless";
+    // $jsonObj->apkurl = "http://13.58.202.127/UoM_Wireless_App/UoM_Wireless.apk";
     echo json_encode($jsonObj);
 
 

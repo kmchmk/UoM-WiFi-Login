@@ -14,9 +14,8 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         NetworkInfo netinfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
         if (netinfo != null && netinfo.isConnected()) {
             MainActivity.mainContext = context;
-            new BackgroundLogin( 0).execute();
-        }
-        else{
+            new BackgroundLogin(0).execute();
+        } else {
             StatusNotification.cancel(context);
         }
     }
