@@ -1,12 +1,12 @@
 <?php
     $jsonObj = new stdClass();
-    $jsonObj->newversion = 0;
+    $jsonObj->newversion = 4;
     $jsonObj->title = "Available on Playstore";
     $jsonObj->message = "You can now download this application on Google Playstore. \n* Search for 'UoM Wireless Login'";
-    $jsonObj->positivebutton = "Go to Playstore";
+    $jsonObj->positivebutton = "Download";
     $jsonObj->negativebutton = "Cancel";
-    $jsonObj->apkurl = "https://play.google.com/store/apps/details?id=lk.cse13.www.uomwireless";
-    // $jsonObj->apkurl = "http://13.58.202.127/UoM_Wireless_App/UoM_Wireless.apk";
+    // $jsonObj->apkurl = "https://play.google.com/store/apps/details?id=lk.cse13.www.uomwireless";
+    $jsonObj->apkurl = "http://13.58.202.127/UoM_Wireless_App/UoM_Wireless.apk";
     echo json_encode($jsonObj);
 
 
