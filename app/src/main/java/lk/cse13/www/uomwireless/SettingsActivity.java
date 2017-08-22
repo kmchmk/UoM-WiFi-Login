@@ -1,12 +1,9 @@
 package lk.cse13.www.uomwireless;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
@@ -14,7 +11,9 @@ import android.widget.EditText;
 public class SettingsActivity extends AppCompatActivity {
     private EditText indexbox;
     private EditText passwordbox;
-private CheckBox checkBox;
+    private CheckBox notificationCheckBox;
+    private CheckBox toastCheckBox;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,15 +26,13 @@ private CheckBox checkBox;
         passwordbox.setText(settings.getString("password", ""));
 
 
-        checkBox = (CheckBox)findViewById(R.id.enable_notification);
+        notificationCheckBox = (CheckBox) findViewById(R.id.enable_notification);
+        toastCheckBox = (CheckBox) findViewById(R.id.enable_toast);
 
-        SharedPreferences preferences = getSharedPreferences("notification_preferences", MODE_PRIVATE);
-        if(preferences.getBoolean("enabled",true)){
-            checkBox.setChecked(true);
-        }
-        else{
-            checkBox.setChecked(false);
-        }
+        SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+        notificationCheckBox.setChecked(preferences.getBoolean("notification_enabled", true));
+        toastCheckBox.setChecked(preferences.getBoolean("toast_enabled", true));
+
 
     }
 
@@ -58,14 +55,10 @@ private CheckBox checkBox;
     }
 
     public void savePreferences(View v) {
-        SharedPreferences settings = getSharedPreferences("notification_preferences", MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences("preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-                if(checkBox.isChecked()){
-            editor.putBoolean("enabled",true);
-        }
-        else{
-            editor.putBoolean("enabled",false);
-        }
+        editor.putBoolean("notification_enabled", notificationCheckBox.isChecked());
+        editor.putBoolean("toast_enabled", toastCheckBox.isChecked());
         editor.commit();
     }
 }

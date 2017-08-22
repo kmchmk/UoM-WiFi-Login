@@ -71,6 +71,12 @@
         android:layout_height="wrap_content"
         android:text="@string/notification_preference"
         android:onClick="savePreferences"/>
+    <CheckBox
+        android:id="@+id/enable_toast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/toast_preference"
+        android:onClick="savePreferences"/>
 
 </LinearLayout>
 
