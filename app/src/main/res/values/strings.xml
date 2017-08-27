@@ -6,9 +6,7 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="clear_all">Clear All</string>
 
-    <string name="description">
-        \tThis application can be used to login in to UoM Wireless wi-fi connection without entering username and pasword again and again. When you connect to UoM Wireless wi-fi, app will automatically log you in. Feel free to let me know if you have any problems or suggestions.
-    </string>
+    <string name="description">This application can be used to login in to UoM Wireless wi-fi connection without entering username and pasword again and again. When you connect to UoM Wireless wi-fi, app will automatically log you in. Feel free to let me know if you have any problems or suggestions.</string>
 
     <string name="l1">1).\tTap the settings button at bottom left corner.</string>
     <string name="l2">2).\tEnter your index number and password.</string>
@@ -22,10 +20,14 @@
     <string name="email"><a href='mailto:kmchmk@gmail.com'>Email</a></string>
     <string name="messenger"><a href='https://m.me/ChanakaMadurangaKarunarathne'>Messenger</a></string>
 
-    <string name="if_huawei">
-        \tIf this application does not run on background, try adding this app to protected apps list in your settings.\n
-        \tIf you are using a Huawei GR5 2017 (Nougat) model then follow the steps below."
-    </string>
+    <string name="if_huawei">If this application does not run on background, try adding this app to protected apps list in your settings. Follow the steps below.</string>
+    <string name="if_huawei_old">If you are using a Huawei Nougat model then follow the steps below.</string>
+    <string name="done">If you have completed above steps, app will automatically log you in when Wi-Fi is available.</string>
+
+    <string name="pastep1">Step 1).\tGo to Settings and Click Advanced settings</string>
+    <string name="pastep2">Step 2).\tClick Battery manager</string>
+    <string name="pastep3">Step 3).\tGo to Protected apps</string>
+    <string name="pastep4">Step 4).\tFind and enable UoM Wireless application</string>
 
     <string name="step1">Step 1).\tGo to Settings and Click Apps</string>
     <string name="step2">Step 2).\tClick Settings icon</string>
