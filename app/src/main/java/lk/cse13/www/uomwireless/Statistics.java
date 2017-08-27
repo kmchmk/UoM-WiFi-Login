@@ -1,30 +1,20 @@
 package lk.cse13.www.uomwireless;
 
 import android.bluetooth.BluetoothAdapter;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
-import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Build;
 import android.provider.Settings.Secure;
-import android.util.Log;
-
-import static android.content.Context.MODE_PRIVATE;
-
 
 class Statistics extends AsyncTask<String, Void, Void> {
 
@@ -41,9 +31,10 @@ class Statistics extends AsyncTask<String, Void, Void> {
             para.add(new BasicNameValuePair("device_id", device_id));
             para.add(new BasicNameValuePair("device_model", device_model));
             para.add(new BasicNameValuePair("device_name", device_name));
-            httpPost.setEntity(new UrlEncodedFormEntity(para,"UTF-8"));
+            httpPost.setEntity(new UrlEncodedFormEntity(para, "UTF-8"));
             httpclient.execute(httpPost);
-        } catch (Exception ignore) {}
+        } catch (Exception ignore) {
+        }
         return null;
     }
 }

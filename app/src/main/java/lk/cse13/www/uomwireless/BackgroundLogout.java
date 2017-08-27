@@ -24,7 +24,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String[] params) {
 
-        if(Operations.isConnectedToUoMWireless()) {
+        if (Operations.isConnectedToUoMWireless()) {
             try {
 
                 MyHttpClient httpClient = new MyHttpClient();
@@ -62,7 +62,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
         if (message.equals("Logged out")) {
             MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             MainActivity.loggedIn = false;
-            StatusNotification.notify(MainActivity.mainContext, "Status:", "You are NOT logged in!");
+            Operations.showNotification("You are NOT logged in!");
         }
         MainActivity.loggingfb.setEnabled(true);
     }

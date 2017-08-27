@@ -3,7 +3,6 @@ package lk.cse13.www.uomwireless;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -18,11 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class BackgroundLogin extends AsyncTask<String, Void, String> {
     private int trying;
 
-    public BackgroundLogin( int trying) {
+    public BackgroundLogin(int trying) {
         this.trying = trying;
         if (MainActivity.screenShowing) {
             MainActivity.loggingfb.setEnabled(false);
@@ -32,9 +30,9 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String[] params) {
-        StatusNotification.cancel(MainActivity.mainContext);
+        Operations.cancelNotification();
 
-        if(MainActivity.loginScreenShowing){
+        if (MainActivity.loginScreenShowing) {
             return "";
         }
 
@@ -43,11 +41,10 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
             String username = Operations.readFromFile("username");
             String password = Operations.readFromFile("password");
 
-            if(username == null || password == null){
+            if (username == null || password == null) {
                 trying = 10;
                 return "Please enter your index and password";
-            }
-            else if (username.length() < 7){
+            } else if (username.length() < 7) {
                 trying = 10;
                 return "Index number is incorrect";
             }
@@ -81,7 +78,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 return responseString;
 
             } catch (Exception e) {
-                return "Unknown error";
+                return "Unknown";
             }
         }
         return "";
@@ -96,12 +93,9 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 if (MainActivity.screenShowing) {
                     MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     MainActivity.loggedIn = true;
+                } else {
+                    Operations.showNotification("Logged in successfully!");
                 }
-
-                else if (Operations.isNotificationEnabled()) {
-                    StatusNotification.notify(MainActivity.mainContext, "Status:", "Logged in successfully!");
-                }
-
                 new Statistics().execute();
 
             } else {
@@ -109,12 +103,12 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                     try {
                         Thread.sleep(trying * 500);
                         Operations.toast("Trying to login again...");
-                        new BackgroundLogin( trying + 1).execute();
+                        new BackgroundLogin(trying + 1).execute();
                     } catch (InterruptedException ignore) {
                     }
-                }
-                else{
-                    StatusNotification.notify(MainActivity.mainContext, "Error:", message);
+                } else {
+                    Operations.showNotification("Error: " + message);
+                    Operations.toast("Error: " + message);
                 }
             }
         }

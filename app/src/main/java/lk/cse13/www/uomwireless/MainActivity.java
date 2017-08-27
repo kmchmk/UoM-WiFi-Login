@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mainContext = MainActivity.this;
 
-        ((TextView)findViewById(R.id.email)).setMovementMethod(LinkMovementMethod.getInstance());//set links clickable
-        ((TextView)findViewById(R.id.messenger)).setMovementMethod(LinkMovementMethod.getInstance());//set links clickable
+        ((TextView) findViewById(R.id.email)).setMovementMethod(LinkMovementMethod.getInstance());//set links clickable
+        ((TextView) findViewById(R.id.messenger)).setMovementMethod(LinkMovementMethod.getInstance());//set links clickable
 
         FloatingActionButton settingsfb = (FloatingActionButton) findViewById(R.id.settingsfb);
         settingsfb.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                         new BackgroundLogout().execute();
                     } else {
                         Operations.toast("Logging in...");
-                        new BackgroundLogin( 0).execute();
+                        new BackgroundLogin(0).execute();
                     }
                 } else {
                     Operations.toast("Connect to UoM Wireless first");
@@ -54,9 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        new BackgroundLogin( 0).execute();
-        StatusNotification.cancel(mainContext);
-
+        new BackgroundLogin(0).execute();
+        Operations.cancelNotification();
     }
 
     @Override

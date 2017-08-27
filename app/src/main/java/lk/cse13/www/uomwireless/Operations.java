@@ -14,12 +14,11 @@ import java.io.OutputStreamWriter;
 
 import static android.content.Context.MODE_PRIVATE;
 
-
 public class Operations {
     private static Toast toastvariable;
 
     public static void toast(String message) {
-        if (isToastEnabled()) {
+        if (isToastEnabled() || MainActivity.screenShowing || MainActivity.loginScreenShowing) {
             if (toastvariable != null) {
                 toastvariable.cancel();
             }
@@ -56,7 +55,6 @@ public class Operations {
     }
 
 
-
     public static String readFromFile(String file) {
         String ret = "";
         try {
@@ -79,5 +77,15 @@ public class Operations {
             outputStreamWriter.close();
         } catch (IOException ignored) {
         }
+    }
+
+    public static void showNotification(String notification) {
+        if (isNotificationEnabled()) {
+            StatusNotification.notify(notification);
+        }
+    }
+
+    public static void cancelNotification() {
+        StatusNotification.cancel();
     }
 }

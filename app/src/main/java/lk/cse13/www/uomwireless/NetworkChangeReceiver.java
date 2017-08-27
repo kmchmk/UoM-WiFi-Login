@@ -16,7 +16,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
             MainActivity.mainContext = context;
             new BackgroundLogin(0).execute();
         } else {
-            StatusNotification.cancel(context);
+            Operations.cancelNotification();
         }
     }
 

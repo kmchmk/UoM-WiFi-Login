@@ -26,9 +26,8 @@ public class SettingsActivity extends AppCompatActivity {
         indexbox = (EditText) findViewById(R.id.indexbox);
         passwordbox = (EditText) findViewById(R.id.passwordbox);
 
-//        SharedPreferences settings = getSharedPreferences("index_password", MODE_PRIVATE);
-        indexbox.setText(Operations.readFromFile("username"));//settings.getString("index", ""));
-        passwordbox.setText(Operations.readFromFile("password"));//settings.getString("password", ""));
+        indexbox.setText(Operations.readFromFile("username"));
+        passwordbox.setText(Operations.readFromFile("password"));
 
 
         notificationCheckBox = (CheckBox) findViewById(R.id.enable_notification);
@@ -37,12 +36,10 @@ public class SettingsActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
         notificationCheckBox.setChecked(preferences.getBoolean("notification_enabled", true));
         toastCheckBox.setChecked(preferences.getBoolean("toast_enabled", true));
-
-
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         MainActivity.loginScreenShowing = false;
     }
@@ -56,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity {
 //        editor.putString("index", index);
 //        editor.putString("password", password);
 //        editor.commit();
-        Operations.writeToFile(index,"username");
+        Operations.writeToFile(index, "username");
         Operations.writeToFile(password, "password");
         Operations.toast("Saved");
         MainActivity.loginScreenShowing = false;
@@ -74,11 +71,12 @@ public class SettingsActivity extends AppCompatActivity {
                         indexbox.setText("");
                         passwordbox.setText("");
 //        getSharedPreferences("index_password", MODE_PRIVATE).edit().clear().commit();
-                        Operations.writeToFile("","username");
+                        Operations.writeToFile("", "username");
                         Operations.writeToFile("", "password");
 //                        new BackgroundLogout().execute();
                         Operations.toast("Deleted");
-                    }})
+                    }
+                })
                 .setNegativeButton(android.R.string.no, null).show();
     }
 
