@@ -115,15 +115,32 @@
         tools:ignore="RelativeOverlap" />
 
     <TextView
+        android:id="@+id/contacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/relativeLayout"
         android:layout_alignStart="@+id/relativeLayout"
         android:layout_below="@+id/relativeLayout"
         android:layout_marginTop="10dp"
-        android:autoLink="email"
         android:text="@string/contact" />
-
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/relativeLayout"
+        android:layout_alignStart="@+id/relativeLayout"
+        android:layout_below="@+id/contacts"
+        android:layout_marginTop="10dp"
+        android:text="@string/email" />
+    <TextView
+        android:id="@+id/messenger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/relativeLayout"
+        android:layout_alignStart="@+id/relativeLayout"
+        android:layout_below="@+id/email"
+        android:layout_marginTop="10dp"
+        android:text="@string/messenger" />
 
     <TextView
         android:layout_width="wrap_content"

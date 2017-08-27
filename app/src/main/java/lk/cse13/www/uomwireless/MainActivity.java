@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.widget.TextView;
+
 
 public class MainActivity extends AppCompatActivity {
     public static FloatingActionButton loggingfb;
@@ -19,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainContext = MainActivity.this;
+
+        ((TextView)findViewById(R.id.email)).setMovementMethod(LinkMovementMethod.getInstance());
+        ((TextView)findViewById(R.id.messenger)).setMovementMethod(LinkMovementMethod.getInstance());
 
         FloatingActionButton settingsfb = (FloatingActionButton) findViewById(R.id.settingsfb);
         settingsfb.setOnClickListener(new View.OnClickListener() {

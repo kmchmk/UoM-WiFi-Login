@@ -67,7 +67,7 @@ public class Operations {
                 ret = bufferedReader.readLine();
                 inputStream.close();
             }
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
         return ret;
     }

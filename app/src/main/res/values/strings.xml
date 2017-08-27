@@ -19,7 +19,9 @@
 
 
     <string name="wearetrying">For windows: www.wearetrying.info/uomw</string>
-    <string name="contact">Contact: kmchmk@gmail.com</string>
+    <string name="contact">Contact me:</string>
+    <string name="email"><a href='mailto:kmchmk@gmail.com'>Email</a></string>
+    <string name="messenger"><a href='https://m.me/ChanakaMadurangaKarunarathne'>Messenger</a></string>
 
     <string name="if_huawei">
         \tIf this application does not run on background, try adding this app to protected apps list in your settings.\n
