@@ -5,11 +5,9 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 
 public class SettingsActivity extends AppCompatActivity {
@@ -60,6 +58,8 @@ public class SettingsActivity extends AppCompatActivity {
 //        editor.commit();
         Operations.writeToFile(index,"username");
         Operations.writeToFile(password, "password");
+        Operations.toast("Saved");
+        MainActivity.loginScreenShowing = false;
         new BackgroundLogin(0).execute();
         finish();
     }
@@ -76,8 +76,8 @@ public class SettingsActivity extends AppCompatActivity {
 //        getSharedPreferences("index_password", MODE_PRIVATE).edit().clear().commit();
                         Operations.writeToFile("","username");
                         Operations.writeToFile("", "password");
-                        new BackgroundLogout().execute();
-                        Operations.toast("Deleted!");
+//                        new BackgroundLogout().execute();
+                        Operations.toast("Deleted");
                     }})
                 .setNegativeButton(android.R.string.no, null).show();
     }
