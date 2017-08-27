@@ -34,7 +34,14 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String[] params) {
         StatusNotification.cancel(MainActivity.mainContext);
+
+
         if (Operations.isConnectedToUoMWireless()) {
+
+            if(MainActivity.loginScreenShowing){
+                return "";
+            }
+
             try {
                 MyHttpClient httpClient = new MyHttpClient();
 

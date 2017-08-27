@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     public static boolean loggedIn = false;
     public static boolean screenShowing = false;
     public static Context mainContext;
+    public static Boolean loginScreenShowing = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
