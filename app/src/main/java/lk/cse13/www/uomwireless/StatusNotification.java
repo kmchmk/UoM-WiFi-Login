@@ -18,16 +18,13 @@ public class StatusNotification {
         final Bitmap picture = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setDefaults(Notification.DEFAULT_ALL)
-                .setSmallIcon(R.drawable.ic_vpn_key_black_24dp)
+                .setSmallIcon(R.mipmap.ic_launcher)//R.drawable.ic_vpn_key_black_24dp)
                 .setContentTitle(title)
                 .setContentText(text)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setLargeIcon(picture)
-                //.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com")), PendingIntent.FLAG_UPDATE_CURRENT))
                 .setAutoCancel(true)
                 .setContentIntent(PendingIntent.getActivity(context, 0,new Intent(context, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT));
-
-
         notify(context, builder.build());
     }
 

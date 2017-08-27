@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mainContext = MainActivity.this;
 
-        ((TextView)findViewById(R.id.email)).setMovementMethod(LinkMovementMethod.getInstance());
-        ((TextView)findViewById(R.id.messenger)).setMovementMethod(LinkMovementMethod.getInstance());
+        ((TextView)findViewById(R.id.email)).setMovementMethod(LinkMovementMethod.getInstance());//set links clickable
+        ((TextView)findViewById(R.id.messenger)).setMovementMethod(LinkMovementMethod.getInstance());//set links clickable
 
         FloatingActionButton settingsfb = (FloatingActionButton) findViewById(R.id.settingsfb);
         settingsfb.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
 
         loggingfb = (FloatingActionButton) findViewById(R.id.loggingfb);
         loggingfb.setOnClickListener(new View.OnClickListener() {
