@@ -30,7 +30,7 @@
         </receiver>
 
         <activity
-            android:name=".StepsActivity"
+            android:name=".HuaweiStepsActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="lk.cse13.www.uomwireless.StepsActivity">
+    tools:context="lk.cse13.www.uomwireless.HuaweiStepsActivity">
 
 
 
@@ -158,15 +158,39 @@
             android:text="@string/step6"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"  />
+            android:textStyle="bold" />
 
         <ImageView
+            android:id="@+id/ss6"
             android:layout_width="@dimen/image_width"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitStart"
             app:srcCompat="@drawable/ss6"
             android:layout_below="@+id/st6"
+            android:layout_alignLeft="@+id/ss1"
+            android:layout_alignStart="@+id/ss1" />
+        <TextView
+            android:id="@+id/st7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/st1"
+            android:layout_alignStart="@+id/st1"
+            android:layout_below="@+id/ss6"
+            android:layout_marginTop="40dp"
+            android:text="@string/step7"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"  />
+
+        <ImageView
+            android:id="@+id/ss7"
+            android:layout_width="@dimen/image_width"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ss7"
+            android:layout_below="@+id/st7"
             android:layout_alignLeft="@+id/ss1"
             android:layout_alignStart="@+id/ss1"
             android:layout_marginBottom="50dp"/>
