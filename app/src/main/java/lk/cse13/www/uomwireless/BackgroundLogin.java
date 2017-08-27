@@ -1,9 +1,9 @@
 package lk.cse13.www.uomwireless;
 
-import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -17,7 +17,6 @@ import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.content.Context.MODE_PRIVATE;
 
 
 public class BackgroundLogin extends AsyncTask<String, Void, String> {
@@ -35,11 +34,22 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
     protected String doInBackground(String[] params) {
         StatusNotification.cancel(MainActivity.mainContext);
 
+        if(MainActivity.loginScreenShowing){
+            return "";
+        }
 
         if (Operations.isConnectedToUoMWireless()) {
 
-            if(MainActivity.loginScreenShowing){
-                return "";
+            String username = Operations.readFromFile("username");
+            String password = Operations.readFromFile("password");
+
+            if(username == null || password == null){
+                trying = 10;
+                return "Please enter your index and password";
+            }
+            else if (username.length() < 7){
+                trying = 10;
+                return "Index number is incorrect";
             }
 
             try {
@@ -56,8 +66,8 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 para.add(new BasicNameValuePair("redirect_url", ""));
                 para.add(new BasicNameValuePair("network_name", "Guest Network"));
 //                SharedPreferences settings = MainActivity.mainContext.getSharedPreferences("index_password", MODE_PRIVATE);
-                para.add(new BasicNameValuePair("username", Operations.readFromFile("username")));//settings.getString("index", "")));
-                para.add(new BasicNameValuePair("password", Operations.readFromFile("password")));//settings.getString("password", "")));
+                para.add(new BasicNameValuePair("username", username));//settings.getString("index", "")));
+                para.add(new BasicNameValuePair("password", password));//settings.getString("password", "")));
                 httpPost.setEntity(new UrlEncodedFormEntity(para));
                 HttpResponse response = httpClient.execute(httpPost);
                 String responseString = "Couldn't log in";
@@ -71,7 +81,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 return responseString;
 
             } catch (Exception e) {
-                return "Error 134";
+                return "Unknown error";
             }
         }
         return "";
@@ -100,12 +110,11 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                         Thread.sleep(trying * 500);
                         Operations.toast("Trying to login again...");
                         new BackgroundLogin( trying + 1).execute();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    } catch (InterruptedException ignore) {
                     }
                 }
                 else{
-                    StatusNotification.notify(MainActivity.mainContext, "Error:", "Couldn't log in!");
+                    StatusNotification.notify(MainActivity.mainContext, "Error:", message);
                 }
             }
         }
