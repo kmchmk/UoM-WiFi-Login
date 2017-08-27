@@ -1,5 +1,7 @@
 package lk.cse13.www.uomwireless;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class SettingsActivity extends AppCompatActivity {
@@ -46,7 +49,7 @@ public class SettingsActivity extends AppCompatActivity {
         MainActivity.loginScreenShowing = false;
     }
 
-    public void save(View view) {
+    public void saveAndLogin(View view) {
         String index = indexbox.getText().toString();
         String password = passwordbox.getText().toString();
 
@@ -57,15 +60,26 @@ public class SettingsActivity extends AppCompatActivity {
 //        editor.commit();
         Operations.writeToFile(index,"username");
         Operations.writeToFile(password, "password");
+        new BackgroundLogin(0).execute();
         finish();
     }
 
     public void clearAll(View view) {
-        indexbox.setText("");
-        passwordbox.setText("");
+
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        indexbox.setText("");
+                        passwordbox.setText("");
 //        getSharedPreferences("index_password", MODE_PRIVATE).edit().clear().commit();
-        Operations.writeToFile("","username");
-        Operations.writeToFile("", "password");
+                        Operations.writeToFile("","username");
+                        Operations.writeToFile("", "password");
+                        new BackgroundLogout().execute();
+                        Operations.toast("Deleted!");
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
     }
 
     public void savePreferences(View v) {
