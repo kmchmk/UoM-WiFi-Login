@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="lk.cse13.www.uomwireless.HuaweiStepsActivity">
-
-
 
 
     <RelativeLayout
@@ -21,34 +18,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:text="@string/if_huawei"
             android:layout_margin="@dimen/text_margin"
+            android:text="@string/if_huawei"
             android:textSize="@dimen/text_size_large"
             android:textStyle="bold" />
-
-
-
 
 
         <TextView
             android:id="@+id/pt1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/if_huawei"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
-            android:layout_below="@+id/if_huawei"
             android:text="@string/pastep1"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size"
             android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/ps1"
             android:layout_width="@dimen/image_width"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/pt1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
-            android:layout_below="@+id/pt1"
             android:adjustViewBounds="true"
+            android:background="#000000"
+            android:padding="1dp"
             android:scaleType="fitStart"
             app:srcCompat="@drawable/pa1" />
 
@@ -64,16 +61,19 @@
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size"
             android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/ps2"
             android:layout_width="@dimen/image_width"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/pa2"
-            android:layout_below="@+id/pt2"
             android:layout_alignLeft="@+id/ps1"
-            android:layout_alignStart="@+id/ps1"/>
+            android:layout_alignStart="@+id/ps1"
+            android:layout_below="@+id/pt2"
+            android:adjustViewBounds="true"
+            android:background="#000000"
+            android:padding="1dp"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/pa2" />
 
         <TextView
             android:id="@+id/pt3"
@@ -87,16 +87,19 @@
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size"
             android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/ps3"
             android:layout_width="@dimen/image_width"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/pa2"
-            android:layout_below="@+id/pt3"
             android:layout_alignLeft="@+id/ps1"
-            android:layout_alignStart="@+id/ps1"/>
+            android:layout_alignStart="@+id/ps1"
+            android:layout_below="@+id/pt3"
+            android:adjustViewBounds="true"
+            android:background="#000000"
+            android:padding="1dp"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/pa2" />
 
         <TextView
             android:id="@+id/pt4"
@@ -110,16 +113,19 @@
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size"
             android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/ps4"
             android:layout_width="@dimen/image_width"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/pa4"
-            android:layout_below="@+id/pt4"
             android:layout_alignLeft="@+id/ps1"
-            android:layout_alignStart="@+id/ps1"/>
+            android:layout_alignStart="@+id/ps1"
+            android:layout_below="@+id/pt4"
+            android:adjustViewBounds="true"
+            android:background="#000000"
+            android:padding="1dp"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/pa4" />
 
 
         <TextView
@@ -134,10 +140,6 @@
             android:textStyle="bold" />
 
 
-
-
-
-
         <TextView
             android:id="@+id/st1"
             android:layout_width="wrap_content"
@@ -149,14 +151,17 @@
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size"
             android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/ss1"
             android:layout_width="@dimen/image_width"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/st1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
-            android:layout_below="@+id/st1"
             android:adjustViewBounds="true"
+            android:background="#000000"
+            android:padding="1dp"
             android:scaleType="fitStart"
             app:srcCompat="@drawable/ss1" />
 
@@ -177,12 +182,14 @@
             android:id="@+id/ss2"
             android:layout_width="@dimen/image_width"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/ss2"
-            android:layout_below="@+id/st2"
             android:layout_alignLeft="@+id/ss1"
-            android:layout_alignStart="@+id/ss1"/>
+            android:layout_alignStart="@+id/ss1"
+            android:layout_below="@+id/st2"
+            android:adjustViewBounds="true"
+            android:background="#000000"
+            android:padding="1dp"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ss2" />
 
         <TextView
             android:id="@+id/st3"
@@ -201,12 +208,14 @@
             android:id="@+id/ss3"
             android:layout_width="@dimen/image_width"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/ss3"
-            android:layout_below="@+id/st3"
             android:layout_alignLeft="@+id/ss1"
-            android:layout_alignStart="@+id/ss1" />
+            android:layout_alignStart="@+id/ss1"
+            android:layout_below="@+id/st3"
+            android:adjustViewBounds="true"
+            android:background="#000000"
+            android:padding="1dp"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ss3" />
 
         <TextView
             android:id="@+id/st4"
@@ -225,12 +234,14 @@
             android:id="@+id/ss4"
             android:layout_width="@dimen/image_width"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/ss4"
-            android:layout_below="@+id/st4"
             android:layout_alignLeft="@+id/ss1"
-            android:layout_alignStart="@+id/ss1" />
+            android:layout_alignStart="@+id/ss1"
+            android:layout_below="@+id/st4"
+            android:adjustViewBounds="true"
+            android:background="#000000"
+            android:padding="1dp"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ss4" />
 
         <TextView
             android:id="@+id/st5"
@@ -249,12 +260,14 @@
             android:id="@+id/ss5"
             android:layout_width="@dimen/image_width"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/ss5"
-            android:layout_below="@+id/st5"
             android:layout_alignLeft="@+id/ss1"
-            android:layout_alignStart="@+id/ss1" />
+            android:layout_alignStart="@+id/ss1"
+            android:layout_below="@+id/st5"
+            android:adjustViewBounds="true"
+            android:background="#000000"
+            android:padding="1dp"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ss5" />
 
         <TextView
             android:id="@+id/st6"
@@ -273,12 +286,15 @@
             android:id="@+id/ss6"
             android:layout_width="@dimen/image_width"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/ss6"
-            android:layout_below="@+id/st6"
             android:layout_alignLeft="@+id/ss1"
-            android:layout_alignStart="@+id/ss1" />
+            android:layout_alignStart="@+id/ss1"
+            android:layout_below="@+id/st6"
+            android:adjustViewBounds="true"
+            android:background="#000000"
+            android:padding="1dp"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ss6" />
+
         <TextView
             android:id="@+id/st7"
             android:layout_width="wrap_content"
@@ -290,19 +306,20 @@
             android:text="@string/step7"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"  />
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/ss7"
             android:layout_width="@dimen/image_width"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/ss7"
+            android:layout_alignLeft="@+id/ss1"
+            android:layout_alignStart="@+id/ss1"
             android:layout_below="@+id/st7"
-            android:layout_alignLeft="@+id/pt1"
-            android:layout_alignStart="@+id/pt1"/>
-
+            android:adjustViewBounds="true"
+            android:background="#000000"
+            android:padding="1dp"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ss7" />
 
 
         <TextView
@@ -314,10 +331,7 @@
             android:paddingTop="30dp"
             android:text="@string/done"
             android:textSize="@dimen/text_size_large"
-            android:textStyle="bold"  />
-
-
-
+            android:textStyle="bold" />
 
 
     </RelativeLayout>
