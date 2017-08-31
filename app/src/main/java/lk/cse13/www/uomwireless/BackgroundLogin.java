@@ -62,7 +62,6 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 para.add(new BasicNameValuePair("info_msg", ""));
                 para.add(new BasicNameValuePair("redirect_url", ""));
                 para.add(new BasicNameValuePair("network_name", "Guest Network"));
-//                SharedPreferences settings = MainActivity.mainContext.getSharedPreferences("index_password", MODE_PRIVATE);
                 para.add(new BasicNameValuePair("username", username));//settings.getString("index", "")));
                 para.add(new BasicNameValuePair("password", password));//settings.getString("password", "")));
                 httpPost.setEntity(new UrlEncodedFormEntity(para));

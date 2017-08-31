@@ -54,6 +54,16 @@ public class Operations {
         return (preferences.getBoolean("toast_enabled", true));
     }
 
+    private static boolean isVibrationEnabled() {
+        SharedPreferences preferences = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
+        return (preferences.getBoolean("toast_enabled", true));
+    }
+
+    private static boolean isSoundEnabled() {
+        SharedPreferences preferences = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
+        return (preferences.getBoolean("toast_enabled", true));
+    }
+
 
     public static String readFromFile(String file) {
         String ret = "";
@@ -87,5 +97,17 @@ public class Operations {
 
     public static void cancelNotification() {
         StatusNotification.cancel();
+    }
+
+    public static void savePreferences(String type, Boolean value) {
+        SharedPreferences settings = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(type, value);
+        editor.commit();
+    }
+
+    public static Boolean getPreferences(String type) {
+        SharedPreferences preferences = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
+        return preferences.getBoolean(type, true);
     }
 }

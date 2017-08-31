@@ -38,6 +38,8 @@
     <string name="step7">Step 7).\tCheck Allow option and hit OK</string>
 
     <string name="notification_preference">Enable notifications</string>
+    <string name="vibrate_preference">Enable vibrations</string>
+    <string name="sound_preference">Enable sound</string>
     <string name="toast_preference">Enable toasts (Notifications you see at the bottom)</string>
 
 </resources>

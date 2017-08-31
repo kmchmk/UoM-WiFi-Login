@@ -70,13 +70,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/notification_preference"
-        android:onClick="savePreferences"/>
+        android:onClick="saveNotificationEnabled"/>
+    <CheckBox
+        android:id="@+id/enable_vibration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/vibrate_preference"
+        android:onClick="saveVibrationEnabled"
+        android:layout_marginLeft="20px" />
+    <CheckBox
+        android:id="@+id/enable_sound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sound_preference"
+        android:onClick="saveSoundEnabled"
+        android:layout_marginLeft="20px"/>
+
     <CheckBox
         android:id="@+id/enable_toast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/toast_preference"
-        android:onClick="savePreferences"/>
+        android:onClick="saveToastEnabled"/>
 
 </LinearLayout>
 
