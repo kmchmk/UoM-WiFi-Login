@@ -37,6 +37,10 @@ public class SettingsActivity extends AppCompatActivity {
         soundCheckBox = (CheckBox) findViewById(R.id.enable_sound);
 
         notificationCheckBox.setChecked(Operations.getPreferences("notification_enabled"));
+        if(!Operations.getPreferences("notification_enabled")){
+            vibrationCheckBox.setEnabled(false);
+            soundCheckBox.setEnabled(false);
+        }
         vibrationCheckBox.setChecked(Operations.getPreferences("vibration_enabled"));
         soundCheckBox.setChecked(Operations.getPreferences("sound_enabled"));
         toastCheckBox.setChecked(Operations.getPreferences("toast_enabled"));

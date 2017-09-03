@@ -13,12 +13,24 @@ public class StatusNotification {
     /*<a href="https://developer.android.com/design/patterns/notifications.html">*/
     public static void notify(final String text) {
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.mainContext)
-                .setDefaults(Notification.DEFAULT_ALL)
+//                .setDefaults(Notification.DEFAULT_ALL)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(text)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true)
                 .setContentIntent(PendingIntent.getActivity(MainActivity.mainContext, 0, new Intent(MainActivity.mainContext, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT));
+
+        Boolean vibrationEnabled = Operations.getPreferences("vibration_enabled");
+        Boolean soundEnabled = Operations.getPreferences("sound_enabled");
+        if (soundEnabled && !vibrationEnabled) {
+            builder.setDefaults(Notification.DEFAULT_SOUND);
+        }
+        else if (!soundEnabled && vibrationEnabled) {
+            builder.setDefaults(Notification.DEFAULT_VIBRATE);
+        }
+        else if (soundEnabled && vibrationEnabled) {
+            builder.setDefaults(Notification.DEFAULT_ALL);
+        }
         notify(MainActivity.mainContext, builder.build());
     }
 
