@@ -25,6 +25,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
     protected String doInBackground(String[] params) {
 
         if (Operations.isConnectedToUoMWireless()) {
+            String responseString = "Couldn't log out";
             try {
 
                 MyHttpClient httpClient = new MyHttpClient();
@@ -36,10 +37,8 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
                 para.add(new BasicNameValuePair("userStatus", "1"));
                 para.add(new BasicNameValuePair("err_flag", "0"));
                 para.add(new BasicNameValuePair("err_msg", ""));
-
                 httpPost.setEntity(new UrlEncodedFormEntity(para));
                 HttpResponse response = httpClient.execute(httpPost);
-                String responseString = "Couldn't log out";
                 StatusLine statusLine = response.getStatusLine();
 
                 if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
@@ -49,7 +48,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
                 }
                 return responseString;
             } catch (Exception e) {
-                return "Error 451";
+                return responseString;
             }
         } else {
             return "Connect to UoM Wireless first";

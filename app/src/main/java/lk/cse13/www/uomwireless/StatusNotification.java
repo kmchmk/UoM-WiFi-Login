@@ -10,7 +10,6 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
 public class StatusNotification {
-    /*<a href="https://developer.android.com/design/patterns/notifications.html">*/
     public static void notify(final String text) {
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.mainContext)
                 .setSmallIcon(R.mipmap.ic_launcher)

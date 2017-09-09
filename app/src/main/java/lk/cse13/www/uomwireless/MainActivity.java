@@ -54,6 +54,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        FloatingActionButton moodlefb = (FloatingActionButton) findViewById(R.id.moodlefb);
+        moodlefb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), MoodleActivity.class);
+                startActivity(i);
+            }
+        });
+
         new BackgroundLogin(0).execute();
         Operations.cancelNotification();
     }
