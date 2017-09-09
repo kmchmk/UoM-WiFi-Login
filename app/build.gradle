@@ -7,8 +7,8 @@ android {
         applicationId "lk.cse13.www.uomwireless"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 4
-        versionName "4.0"
+        versionCode 5
+        versionName "5.0"
     }
     useLibrary 'org.apache.http.legacy'
     buildTypes {

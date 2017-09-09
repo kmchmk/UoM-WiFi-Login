@@ -48,7 +48,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 trying = 10;
                 return "Index number is incorrect";
             }
-
+            String responseString = "Couldn't log in. Open app to try again.";
             try {
                 MyHttpClient httpClient = new MyHttpClient();
 
@@ -66,7 +66,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 para.add(new BasicNameValuePair("password", password));//settings.getString("password", "")));
                 httpPost.setEntity(new UrlEncodedFormEntity(para));
                 HttpResponse response = httpClient.execute(httpPost);
-                String responseString = "Couldn't log in";
+
                 StatusLine statusLine = response.getStatusLine();
 
                 if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
@@ -77,7 +77,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 return responseString;
 
             } catch (Exception e) {
-                return "Unknown";
+                return responseString;
             }
         }
         return "";
@@ -106,8 +106,8 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                     } catch (InterruptedException ignore) {
                     }
                 } else {
-                    Operations.showNotification("Error: " + message);
-                    Operations.toast("Error: " + message);
+                    Operations.showNotification(message);
+                    Operations.toast(message);
                 }
             }
         }

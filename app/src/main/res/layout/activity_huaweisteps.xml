@@ -99,7 +99,7 @@
             android:background="#000000"
             android:padding="1dp"
             android:scaleType="fitStart"
-            app:srcCompat="@drawable/pa2" />
+            app:srcCompat="@drawable/pa3" />
 
         <TextView
             android:id="@+id/pt4"

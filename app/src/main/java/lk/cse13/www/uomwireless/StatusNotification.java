@@ -13,9 +13,10 @@ public class StatusNotification {
     /*<a href="https://developer.android.com/design/patterns/notifications.html">*/
     public static void notify(final String text) {
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.mainContext)
-//                .setDefaults(Notification.DEFAULT_ALL)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(text)
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText("You can disable or turn off sound/vibration for this notification. Open the app and go to settings."))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true)
                 .setContentIntent(PendingIntent.getActivity(MainActivity.mainContext, 0, new Intent(MainActivity.mainContext, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT));

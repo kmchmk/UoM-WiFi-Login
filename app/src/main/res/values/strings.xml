@@ -22,7 +22,7 @@
 
     <string name="if_huawei">If this application does not run on background, try adding this app to protected apps list in your settings. Follow the steps below.</string>
     <string name="if_huawei_old">If you are using a Huawei Nougat model then follow the steps below.</string>
-    <string name="done">If you have completed above steps, app will automatically log you in when Wi-Fi is available.</string>
+    <string name="done">If you have completed above steps, app will automatically log you in when UoM_Wireless Wi-Fi is connected.</string>
 
     <string name="pastep1">Step 1).\tGo to Settings and Click Advanced settings</string>
     <string name="pastep2">Step 2).\tClick Battery manager</string>
