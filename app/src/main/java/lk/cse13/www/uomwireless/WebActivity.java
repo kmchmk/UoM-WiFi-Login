@@ -17,7 +17,6 @@ import android.webkit.WebViewClient;
 import org.apache.http.util.EncodingUtils;
 
 
-
 public class WebActivity extends AppCompatActivity {
     private WebView webview;
     private String site;
@@ -53,12 +52,11 @@ public class WebActivity extends AppCompatActivity {
         String username = Operations.readFromFile("username");
         String password = Operations.readFromFile("password");
 
-        if(site.equals("online")) {
+        if (site.equals("online")) {
             String postData = "username=" + username + "&password=" + password;
             webview.postUrl("https://online.mrt.ac.lk/login/index.php", EncodingUtils.getBytes(postData, "BASE64"));
-        }
-        else if(site.equals("lms")){
-            String postData = "LearnOrgUsername="+username+"&LearnOrgPassword="+password+"&LearnOrgLogin=Login";
+        } else if (site.equals("lms")) {
+            String postData = "LearnOrgUsername=" + username + "&LearnOrgPassword=" + password + "&LearnOrgLogin=Login";
             webview.postUrl("https://lms.mrt.ac.lk/login.php", EncodingUtils.getBytes(postData, "BASE64"));
         }
     }
