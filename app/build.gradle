@@ -6,9 +6,9 @@ android {
     defaultConfig {
         applicationId "lk.cse13.www.uomwireless"
         minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 6
-        versionName "6.0"
+        targetSdkVersion 26
+        versionCode 7
+        versionName "7.0"
     }
     useLibrary 'org.apache.http.legacy'
     buildTypes {

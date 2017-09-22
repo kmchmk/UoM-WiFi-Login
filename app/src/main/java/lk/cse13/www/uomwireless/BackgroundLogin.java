@@ -95,8 +95,6 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                 } else {
                     Operations.showNotification("Logged in successfully!");
                 }
-                new Statistics().execute();
-
             } else {
                 if (trying < 10) {
                     try {

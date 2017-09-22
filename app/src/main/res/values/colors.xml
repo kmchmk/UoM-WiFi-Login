@@ -5,5 +5,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="red">#FFFF0000</color>
+    <color name="lms_colour">#003C79</color>
 
 </resources>

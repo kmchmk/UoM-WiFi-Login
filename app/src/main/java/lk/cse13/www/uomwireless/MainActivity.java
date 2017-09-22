@@ -56,10 +56,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         FloatingActionButton moodlefb = (FloatingActionButton) findViewById(R.id.moodlefb);
+        FloatingActionButton lmsfb = (FloatingActionButton) findViewById(R.id.lmsfb);
         moodlefb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), MoodleActivity.class);
+                Intent i = new Intent(getApplicationContext(), WebActivity.class);
+                i.putExtra("site", "online");
+                startActivity(i);
+            }
+        });
+        lmsfb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), WebActivity.class);
+                i.putExtra("site", "lms");
                 startActivity(i);
             }
         });
