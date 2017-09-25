@@ -24,7 +24,7 @@ public class WebActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_moodle);
+        setContentView(R.layout.activity_web);
         site = getIntent().getExtras().getString("site");
 
         webview = (WebView) findViewById(R.id.webView);
@@ -58,6 +58,10 @@ public class WebActivity extends AppCompatActivity {
         } else if (site.equals("lms")) {
             String postData = "LearnOrgUsername=" + username + "&LearnOrgPassword=" + password + "&LearnOrgLogin=Login";
             webview.postUrl("https://lms.mrt.ac.lk/login.php", EncodingUtils.getBytes(postData, "BASE64"));
+        }
+        else if (site.equals("webmail")) {
+            String postData = "app=&login_post=1&url=&anchor_string=&horde_user="+username+"&horde_pass="+password+"&horde_select_view=auto&imp_server_key=1imap&new_lang=en_US";
+            webview.postUrl("https://webmail.mrt.ac.lk/portal/login.php", EncodingUtils.getBytes(postData, "BASE64"));
         }
     }
 

@@ -7,16 +7,16 @@
 
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/loggingfb"
         android:layout_alignLeft="@+id/settingsfb"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/loggingfb"
-        android:layout_alignStart="@+id/settingsfb"
 
-        tools:layout_height="wrap_content"
-        android:id="@+id/relativeLayout">
+        android:layout_alignStart="@+id/settingsfb"
+        tools:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/ste1"
@@ -53,8 +53,7 @@
             android:layout_alignStart="@+id/ste3"
             android:layout_below="@+id/ste3"
             android:layout_marginTop="10dp"
-            android:text="@string/l4"/>
-
+            android:text="@string/l4" />
 
 
         <Button
@@ -65,10 +64,10 @@
             android:layout_alignStart="@+id/ste4"
             android:layout_below="@+id/ste4"
             android:layout_marginTop="10dp"
+            android:onClick="openSteps"
             android:text="@string/if_huawei_button"
-            android:textSize="12sp"
             android:textColor="@color/red"
-            android:onClick="openSteps"/>
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/description"
@@ -92,35 +91,37 @@
             android:layout_below="@+id/description"
             android:layout_marginTop="10dp"
             android:text="@string/contact" />
+
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/contacts"
-            android:layout_toRightOf="@+id/contacts"
             android:layout_below="@+id/description"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/contacts"
+            android:layout_toRightOf="@+id/contacts"
             android:text="@string/email" />
+
         <TextView
             android:id="@+id/messenger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/email"
-            android:layout_toRightOf="@+id/email"
             android:layout_below="@+id/description"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/email"
+            android:layout_toRightOf="@+id/email"
             android:text="@string/messenger" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/messenger"
             android:layout_alignLeft="@+id/ste3"
             android:layout_alignStart="@+id/ste3"
+            android:layout_below="@+id/messenger"
             android:layout_marginTop="10dp"
             android:autoLink="web"
             android:text="@string/wearetrying"
@@ -131,11 +132,11 @@
         android:id="@+id/settingsfb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@id/settingsfb"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignStart="@id/settingsfb"
-        android:layout_alignParentLeft="true"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginStart="15dp"
@@ -143,40 +144,57 @@
         app:backgroundTint="@android:color/background_light"
         app:borderWidth="0dp"
         app:elevation="8dp"
-        app:fabSize="mini"
-         />
+        app:fabSize="mini" />
+
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/moodlefb"
+        android:id="@+id/webmailfb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/moodle_icon"
+        android:layout_alignTop="@+id/lmsfb"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@+id/lmsfb"
+        android:layout_toStartOf="@+id/lmsfb"
+        android:src="@drawable/webmail_icon"
         app:borderWidth="0dp"
         app:elevation="8dp"
         app:fabSize="mini"
         tools:ignore="RelativeOverlap"
-        android:layout_alignTop="@+id/loggingfb"
-        android:layout_toLeftOf="@+id/loggingfb"
-        android:layout_toStartOf="@+id/loggingfb"
-        android:layout_marginRight="15dp"
-        android:layout_marginEnd="15dp"
- />
+        android:backgroundTint="@color/webmail_colour"/>
+
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/lmsfb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/moodlefb"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@+id/moodlefb"
+        android:layout_toStartOf="@+id/moodlefb"
         android:src="@drawable/lms_icon"
         app:borderWidth="0dp"
         app:elevation="8dp"
         app:fabSize="mini"
         tools:ignore="RelativeOverlap"
-        android:layout_alignTop="@+id/moodlefb"
-        android:layout_toLeftOf="@+id/moodlefb"
-        android:layout_toStartOf="@+id/moodlefb"
-        android:layout_marginRight="15dp"
+        android:backgroundTint="@color/lms_colour"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/moodlefb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/loggingfb"
         android:layout_marginEnd="15dp"
-        android:backgroundTint="@color/lms_colour"
-        />
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@+id/loggingfb"
+        android:layout_toStartOf="@+id/loggingfb"
+        android:src="@drawable/moodle_icon"
+        app:borderWidth="0dp"
+        app:elevation="8dp"
+        app:fabSize="mini"
+        tools:ignore="RelativeOverlap" />
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/loggingfb"
@@ -193,11 +211,6 @@
         app:elevation="8dp"
         app:fabSize="mini"
         tools:ignore="RelativeOverlap" />
-
-
-
-
-
 
 
 </RelativeLayout>

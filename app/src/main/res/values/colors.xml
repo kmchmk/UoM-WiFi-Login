@@ -6,5 +6,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="red">#FFFF0000</color>
     <color name="lms_colour">#003C79</color>
+    <color name="webmail_colour">#7220bf</color>
 
 </resources>

@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton moodlefb = (FloatingActionButton) findViewById(R.id.moodlefb);
         FloatingActionButton lmsfb = (FloatingActionButton) findViewById(R.id.lmsfb);
+        FloatingActionButton webmailfb = (FloatingActionButton) findViewById(R.id.webmailfb);
         moodlefb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,7 +74,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+        webmailfb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), WebActivity.class);
+                i.putExtra("site", "webmail");
+                startActivity(i);
+            }
+        });
         new BackgroundLogin(0).execute();
         Operations.cancelNotification();
     }
