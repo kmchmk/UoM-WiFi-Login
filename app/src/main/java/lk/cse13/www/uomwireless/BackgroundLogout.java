@@ -15,10 +15,12 @@ import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
 import java.util.List;
 
+import lk.cse13.www.uomwireless.Views.MainActivity;
+
 
 public class BackgroundLogout extends AsyncTask<String, Void, String> {
     public BackgroundLogout() {
-        MainActivity.loggingfb.setEnabled(false);
+        MainActivity.loginButton.setEnabled(false);
     }
 
     @Override
@@ -59,11 +61,11 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         Operations.toast(message);
         if (message.equals("Logged out")) {
-            MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            MainActivity.loginButton.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             MainActivity.loggedIn = false;
             Operations.showNotification("You are NOT logged in!");
         }
-        MainActivity.loggingfb.setEnabled(true);
+        MainActivity.loginButton.setEnabled(true);
     }
 }
 

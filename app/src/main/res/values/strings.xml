@@ -15,6 +15,8 @@
     <string name="l4">4).\tFinally tap the login button at the bottom right corner.</string>
     <string name="if_huawei_button">If you are using a Huawei phone, follow these steps.</string>
 
+    <string name="login_button">Click here to login</string>
+
 
     <string name="wearetrying">For windows: www.wearetrying.info/uomw</string>
     <string name="source_code">Github: www.github.com/kmchmk1026/UoM-WiFi-Login</string>
@@ -43,5 +45,11 @@
     <string name="vibrate_preference">Enable vibrations</string>
     <string name="sound_preference">Enable sound</string>
     <string name="toast_preference">Enable toasts (Notifications you see at the bottom)</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 
 </resources>

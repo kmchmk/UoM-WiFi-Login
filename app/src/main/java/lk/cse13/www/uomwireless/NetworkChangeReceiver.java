@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
+import lk.cse13.www.uomwireless.Views.MainActivity;
 
 public class NetworkChangeReceiver extends BroadcastReceiver {
     @Override

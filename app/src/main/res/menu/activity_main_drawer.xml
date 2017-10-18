@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_guide"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Guide" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Settings" />
+    </group>
+    <item android:title="Sites">
+        <menu>
+            <item
+                android:id="@+id/nav_moodle"
+                android:icon="@drawable/moodle_icon"
+                android:title="Moodle" />
+            <item
+                android:id="@+id/nav_lms"
+                android:icon="@drawable/lms_icon"
+                android:title="LMS" />
+            <item
+                android:id="@+id/nav_webmail"
+                android:icon="@drawable/webmail_icon"
+                android:title="Webmail" />
+
+        </menu>
+    </item>
+    <item android:title="Contact">
+        <menu>
+            <item
+                android:id="@+id/nav_email"
+                android:icon="@drawable/ic_mail_black_24dp"
+                android:title="Email" />
+            <item
+                android:id="@+id/nav_messenger"
+                android:icon="@mipmap/messenger_icon"
+                android:title="Messenger" />
+        </menu>
+    </item>
+    <item android:title="About">
+        <menu>
+            <item
+                android:id="@+id/nav_source"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Source code" />
+            <item
+                android:id="@+id/nav_windows"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Windows" />
+            <item
+                android:id="@+id/nav_us"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Us" />
+        </menu>
+    </item>
+
+</menu>

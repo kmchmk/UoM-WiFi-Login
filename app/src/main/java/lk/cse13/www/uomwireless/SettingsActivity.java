@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import lk.cse13.www.uomwireless.Views.MainActivity;
+
 
 public class SettingsActivity extends AppCompatActivity {
     private EditText indexbox;

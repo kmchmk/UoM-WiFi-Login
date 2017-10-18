@@ -16,6 +16,8 @@ import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
 import java.util.List;
 
+import lk.cse13.www.uomwireless.Views.MainActivity;
+
 
 public class BackgroundLogin extends AsyncTask<String, Void, String> {
     private int trying;
@@ -23,7 +25,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
     public BackgroundLogin(int trying) {
         this.trying = trying;
         if (MainActivity.screenShowing) {
-            MainActivity.loggingfb.setEnabled(false);
+            MainActivity.loginButton.setEnabled(false);
         }
     }
 
@@ -90,7 +92,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
 
             if (message.equals("Logged in")) {
                 if (MainActivity.screenShowing) {
-                    MainActivity.loggingfb.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    MainActivity.loginButton.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     MainActivity.loggedIn = true;
                 } else {
                     Operations.showNotification("Logged in successfully!");
@@ -110,7 +112,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
             }
         }
         if (MainActivity.screenShowing) {
-            MainActivity.loggingfb.setEnabled(true);
+            MainActivity.loginButton.setEnabled(true);
         }
     }
 
