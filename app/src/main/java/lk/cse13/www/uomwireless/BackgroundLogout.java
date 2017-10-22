@@ -3,6 +3,7 @@ package lk.cse13.www.uomwireless;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -61,7 +62,9 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         Operations.toast(message);
         if (message.equals("Logged out")) {
-            MainActivity.loginButton.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                MainActivity.loginButton.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            }
             MainActivity.loggedIn = false;
             Operations.showNotification("You are NOT logged in!");
         }

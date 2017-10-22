@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.1'
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "lk.cse13.www.uomwireless"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 8
         versionName "8.0"
@@ -26,4 +26,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.0.2'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
     compile 'com.android.support:design:26.0.2'
+    compile 'com.android.support:support-v4:26.0.2-alpha1'
 }

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SettingsActivity"
+            android:name=".SettingsActivity2"
             android:label="@string/settings" />
 
         <receiver
@@ -26,15 +26,12 @@
 
         <activity
             android:name=".HuaweiStepsActivity"
-            android:parentActivityName=".Views.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="lk.cse13.www.uomwireless.Views.MainActivity" />
+            />
         </activity>
         <activity
             android:name=".WebActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Views.MainActivity"
             android:label="@string/title_activity_main"
@@ -45,6 +42,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Views.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>

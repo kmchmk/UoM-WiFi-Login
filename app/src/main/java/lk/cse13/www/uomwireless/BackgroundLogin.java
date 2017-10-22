@@ -3,6 +3,7 @@ package lk.cse13.www.uomwireless;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -92,7 +93,9 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
 
             if (message.equals("Logged in")) {
                 if (MainActivity.screenShowing) {
-                    MainActivity.loginButton.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        MainActivity.loginButton.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    }
                     MainActivity.loggedIn = true;
                 } else {
                     Operations.showNotification("Logged in successfully!");

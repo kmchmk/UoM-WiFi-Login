@@ -69,7 +69,7 @@ public class WebActivity extends AppCompatActivity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
 //            if (url.equals("https://online.mrt.ac.lk/login/index.php")) {
-//                Intent i = new Intent(getApplicationContext(), SettingsActivity.class);
+//                Intent i = new Intent(getApplicationContext(), SettingsActivity2.class);
 //                startActivity(i);
 //            }
             if (Uri.parse(url).getHost().equals(site + ".mrt.ac.lk")) {

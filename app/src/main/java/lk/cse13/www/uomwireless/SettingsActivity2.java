@@ -11,7 +11,7 @@ import android.widget.EditText;
 import lk.cse13.www.uomwireless.Views.MainActivity;
 
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity2 extends AppCompatActivity {
     private EditText indexbox;
     private EditText passwordbox;
     private CheckBox notificationCheckBox;
@@ -22,7 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_settings2);
 
         MainActivity.loginScreenShowing = true;
 

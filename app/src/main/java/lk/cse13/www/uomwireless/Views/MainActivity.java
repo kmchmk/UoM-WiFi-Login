@@ -3,8 +3,6 @@ package lk.cse13.www.uomwireless.Views;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
@@ -21,7 +18,7 @@ import lk.cse13.www.uomwireless.BackgroundLogout;
 import lk.cse13.www.uomwireless.HuaweiStepsActivity;
 import lk.cse13.www.uomwireless.Operations;
 import lk.cse13.www.uomwireless.R;
-import lk.cse13.www.uomwireless.SettingsActivity;
+import lk.cse13.www.uomwireless.SettingsActivity2;
 import lk.cse13.www.uomwireless.WebActivity;
 
 public class MainActivity extends AppCompatActivity
@@ -107,6 +104,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(i);
         } else if (id == R.id.nav_settings) {
             Intent i = new Intent(getApplicationContext(), SettingsActivity.class);
+            startActivity(i);
+        } else if (id == R.id.nav_settings2) {
+            Intent i = new Intent(getApplicationContext(), SettingsActivity2.class);
             startActivity(i);
         } else if (id == R.id.nav_moodle) {
             Intent i = new Intent(getApplicationContext(), WebActivity.class);
