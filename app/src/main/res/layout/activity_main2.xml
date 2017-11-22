@@ -113,7 +113,8 @@
             android:layout_marginTop="10dp"
             android:autoLink="web"
             android:text="@string/source_code"
-            tools:textSize="10sp" />
+            tools:textSize="10sp"
+            android:layout_alignLeft="@+id/ste3" />
 
         <TextView
             android:id="@+id/windows"
@@ -124,7 +125,8 @@
             android:layout_marginTop="10dp"
             android:autoLink="web"
             android:text="@string/wearetrying"
-            tools:textSize="10sp" />
+            tools:textSize="10sp"
+            android:layout_alignLeft="@+id/ste3" />
 
 
     </RelativeLayout>
@@ -142,7 +144,10 @@
         app:backgroundTint="@android:color/background_light"
         app:borderWidth="0dp"
         app:elevation="8dp"
-        app:fabSize="mini" />
+        app:fabSize="mini"
+        android:layout_marginLeft="15dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignLeft="@id/settingsfb" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -157,7 +162,9 @@
         app:elevation="8dp"
         app:fabSize="mini"
         tools:ignore="RelativeOverlap"
-        android:backgroundTint="@color/webmail_colour"/>
+        android:backgroundTint="@color/webmail_colour"
+        android:layout_toLeftOf="@+id/lmsfb"
+        android:layout_marginRight="15dp" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -172,7 +179,9 @@
         app:elevation="8dp"
         app:fabSize="mini"
         tools:ignore="RelativeOverlap"
-        android:backgroundTint="@color/lms_colour"/>
+        android:backgroundTint="@color/lms_colour"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@+id/moodlefb" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/moodlefb"
@@ -185,7 +194,9 @@
         app:borderWidth="0dp"
         app:elevation="8dp"
         app:fabSize="mini"
-        tools:ignore="RelativeOverlap" />
+        tools:ignore="RelativeOverlap"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@+id/loggingfb" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -200,7 +211,9 @@
         app:borderWidth="0dp"
         app:elevation="8dp"
         app:fabSize="mini"
-        tools:ignore="RelativeOverlap" />
+        tools:ignore="RelativeOverlap"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp" />
 
 
 </RelativeLayout>
