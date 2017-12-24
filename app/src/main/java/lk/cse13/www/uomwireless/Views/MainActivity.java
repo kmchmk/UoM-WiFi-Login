@@ -2,10 +2,7 @@ package lk.cse13.www.uomwireless.Views;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,10 +15,8 @@ import android.widget.Button;
 
 import lk.cse13.www.uomwireless.BackgroundLogin;
 import lk.cse13.www.uomwireless.BackgroundLogout;
-import lk.cse13.www.uomwireless.HuaweiStepsActivity;
 import lk.cse13.www.uomwireless.Operations;
 import lk.cse13.www.uomwireless.R;
-import lk.cse13.www.uomwireless.WebActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

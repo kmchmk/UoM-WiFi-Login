@@ -1,4 +1,4 @@
-package lk.cse13.www.uomwireless;
+package lk.cse13.www.uomwireless.Views;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -15,6 +16,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import org.apache.http.util.EncodingUtils;
+
+import lk.cse13.www.uomwireless.Operations;
+import lk.cse13.www.uomwireless.R;
 
 
 public class WebActivity extends AppCompatActivity {
@@ -33,6 +37,7 @@ public class WebActivity extends AppCompatActivity {
         WebSettings settings = webview.getSettings();
         settings.setLoadsImagesAutomatically(true);
         settings.setJavaScriptEnabled(true);
+        settings.setLoadWithOverviewMode(true);
         settings.setUseWideViewPort(true);
         settings.setBuiltInZoomControls(true);
         settings.setDisplayZoomControls(false);
@@ -60,9 +65,8 @@ public class WebActivity extends AppCompatActivity {
         } else if (site.equals("lms")) {
             String postData = "LearnOrgUsername=" + username + "&LearnOrgPassword=" + password + "&LearnOrgLogin=Login";
             webview.postUrl("https://lms.mrt.ac.lk/login.php", EncodingUtils.getBytes(postData, "BASE64"));
-        }
-        else if (site.equals("webmail")) {
-            String postData = "app=&login_post=1&url=&anchor_string=&horde_user="+username+"&horde_pass="+password+"&horde_select_view=auto&imp_server_key=1imap&new_lang=en_US";
+        } else if (site.equals("webmail")) {
+            String postData = "app=&login_post=1&url=&anchor_string=&horde_user=" + username + "&horde_pass=" + password + "&horde_select_view=auto&imp_server_key=1imap&new_lang=en_US";
             webview.postUrl("https://webmail.mrt.ac.lk/portal/login.php", EncodingUtils.getBytes(postData, "BASE64"));
         }
     }
@@ -115,4 +119,18 @@ public class WebActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void closeView(View v) {
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure?")// that you want to close this?")
+//                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null).show();
+    }
+
+
 }

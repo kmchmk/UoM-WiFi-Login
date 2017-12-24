@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="lk.cse13.www.uomwireless.WebActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="lk.cse13.www.uomwireless.Views.WebActivity"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
@@ -17,6 +17,23 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true" >
     </WebView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:onClick="closeView"
+        android:alpha="0.75"
+        app:backgroundTint="@android:color/background_light"
+        app:elevation="100dp"
+        app:fabSize="mini"
+        tools:ignore="RelativeOverlap" />
 
 
 </RelativeLayout>

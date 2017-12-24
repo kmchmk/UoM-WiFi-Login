@@ -7,8 +7,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -22,20 +22,21 @@
         </receiver>
 
         <activity
-            android:name=".HuaweiStepsActivity"
+            android:name=".Views.HuaweiStepsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             />
         </activity>
+
         <activity
-            android:name=".WebActivity"
+            android:name=".Views.WebActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".Views.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
