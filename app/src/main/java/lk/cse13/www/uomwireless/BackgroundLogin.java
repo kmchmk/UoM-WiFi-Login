@@ -19,6 +19,8 @@ import java.util.List;
 
 import lk.cse13.www.uomwireless.Views.MainActivity;
 
+import static android.R.attr.password;
+
 
 public class BackgroundLogin extends AsyncTask<String, Void, String> {
     private int trying;
@@ -41,9 +43,11 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
 
         if (Operations.isConnectedToUoMWireless()) {
 
-            String username = Operations.readFromFile("username");
-            String password = Operations.readFromFile("password");
-
+//            String username = Operations.readFromFile("username");
+//            String password = Operations.readFromFile("password");
+//
+            String username = Operations.getUsername();
+            String password = Operations.getPassword();
             if (username == null || password == null) {
                 trying = 10;
                 return "Please enter your index and password";

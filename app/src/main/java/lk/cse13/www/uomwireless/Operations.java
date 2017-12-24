@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -67,7 +68,7 @@ public class Operations {
     }
 
 
-    public static String readFromFile(String file) {
+   /* public static String readFromFile(String file) {
         String ret = "";
         try {
             InputStream inputStream = MainActivity.mainContext.openFileInput(file);
@@ -81,7 +82,7 @@ public class Operations {
         }
         return ret;
     }
-
+*/
     public static void writeToFile(String data, String file) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(MainActivity.mainContext.openFileOutput(file, Context.MODE_PRIVATE));
@@ -109,7 +110,21 @@ public class Operations {
     }
 
     public static Boolean getPreferences(String type) {
-        SharedPreferences preferences = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
-        return preferences.getBoolean(type, true);
+//        SharedPreferences preferences = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
+//        return preferences.getBoolean(type, true);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.mainContext);
+        return sharedPref.getBoolean(type, true);
+    }
+
+
+    public static String getUsername() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.mainContext);
+        return sharedPref.getString("index", "");
+    }
+
+    public static String getPassword() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.mainContext);
+        return sharedPref.getString("password", "");
     }
 }

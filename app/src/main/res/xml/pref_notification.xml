@@ -2,24 +2,24 @@
 
     <SwitchPreference
         android:defaultValue="false"
-        android:key="notifications"
+        android:key="notification_enabled"
         android:title="@string/pref_title_notifications" />
 
     <SwitchPreference
         android:defaultValue="false"
-        android:dependency="notifications"
-        android:key="notifications_sound"
+        android:dependency="notification_enabled"
+        android:key="sound_enabled"
         android:title="@string/pref_title_sound" />
 
     <SwitchPreference
         android:defaultValue="false"
-        android:dependency="notifications"
-        android:key="notifications_vibrate"
+        android:dependency="notification_enabled"
+        android:key="vibration_enabled"
         android:title="@string/pref_title_vibrate" />
 
     <SwitchPreference
         android:defaultValue="true"
-        android:key="toasts"
+        android:key="toast_enabled"
         android:title="@string/pref_title_toasts" />
 
 </PreferenceScreen>

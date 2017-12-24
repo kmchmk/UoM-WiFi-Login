@@ -2,7 +2,10 @@ package lk.cse13.www.uomwireless.Views;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,7 +21,6 @@ import lk.cse13.www.uomwireless.BackgroundLogout;
 import lk.cse13.www.uomwireless.HuaweiStepsActivity;
 import lk.cse13.www.uomwireless.Operations;
 import lk.cse13.www.uomwireless.R;
-import lk.cse13.www.uomwireless.SettingsActivity2;
 import lk.cse13.www.uomwireless.WebActivity;
 
 public class MainActivity extends AppCompatActivity
@@ -105,9 +107,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_settings) {
             Intent i = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(i);
-        } else if (id == R.id.nav_settings2) {
-            Intent i = new Intent(getApplicationContext(), SettingsActivity2.class);
-            startActivity(i);
         } else if (id == R.id.nav_moodle) {
             Intent i = new Intent(getApplicationContext(), WebActivity.class);
             i.putExtra("site", "online");
@@ -129,5 +128,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public void test(View w){
+
     }
 }

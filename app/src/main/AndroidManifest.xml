@@ -12,9 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".SettingsActivity2"
-            android:label="@string/settings" />
 
         <receiver
             android:name=".NetworkChangeReceiver"

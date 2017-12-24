@@ -17,6 +17,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
+        android:password="true"
         android:title="@string/title_password" />
 
 </PreferenceScreen>

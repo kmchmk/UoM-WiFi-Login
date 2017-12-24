@@ -49,8 +49,10 @@ public class WebActivity extends AppCompatActivity {
     }
 
     private void login() {
-        String username = Operations.readFromFile("username");
-        String password = Operations.readFromFile("password");
+//        String username = Operations.readFromFile("username");
+//        String password = Operations.readFromFile("password");
+        String username = Operations.getUsername();
+        String password = Operations.getPassword();
 
         if (site.equals("online")) {
             String postData = "username=" + username + "&password=" + password;
@@ -69,7 +71,7 @@ public class WebActivity extends AppCompatActivity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
 //            if (url.equals("https://online.mrt.ac.lk/login/index.php")) {
-//                Intent i = new Intent(getApplicationContext(), SettingsActivity2.class);
+//                Intent i = new Intent(getApplicationContext(), SettingsActivity.class);
 //                startActivity(i);
 //            }
             if (Uri.parse(url).getHost().equals(site + ".mrt.ac.lk")) {
