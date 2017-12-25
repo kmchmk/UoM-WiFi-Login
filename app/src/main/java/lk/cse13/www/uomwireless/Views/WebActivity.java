@@ -122,7 +122,7 @@ public class WebActivity extends AppCompatActivity {
 
     public void closeView(View v) {
         new AlertDialog.Builder(this)
-                .setMessage("Are you sure?")// that you want to close this?")
+                .setMessage("Exit from website?")// that you want to close this?")
 //                .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {

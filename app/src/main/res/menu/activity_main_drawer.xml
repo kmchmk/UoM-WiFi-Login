@@ -8,7 +8,7 @@
             android:title="Huawei Guide" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_settings_black_24dp"
             android:title="Settings" />
     </group>
     <item android:title="Sites">
@@ -28,33 +28,29 @@
 
         </menu>
     </item>
-    <item android:title="Contact">
-        <menu>
-            <item
-                android:id="@+id/nav_email"
-                android:icon="@drawable/ic_mail_black_24dp"
-                android:title="Email" />
-            <item
-                android:id="@+id/nav_messenger"
-                android:icon="@mipmap/messenger_icon"
-                android:title="Messenger" />
-        </menu>
-    </item>
+
     <item android:title="About">
         <menu>
             <item
                 android:id="@+id/nav_source"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/github_icon"
                 android:title="Source code" />
             <item
                 android:id="@+id/nav_windows"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Windows" />
-            <item
-                android:id="@+id/nav_us"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Us" />
+                android:icon="@drawable/windows_icon"
+                android:title="For PC" />
         </menu>
     </item>
-
+    <item android:title="Contact me">
+        <menu>
+            <item
+                android:id="@+id/nav_email"
+                android:icon="@drawable/gmail_icon"
+                android:title="Email" />
+            <item
+                android:id="@+id/nav_messenger"
+                android:icon="@drawable/messenger_icon"
+                android:title="Messenger" />
+        </menu>
+    </item>
 </menu>
