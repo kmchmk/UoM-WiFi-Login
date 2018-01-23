@@ -27,6 +27,8 @@
     <string name="email"><a href='mailto:kmchmk@gmail.com'>Email</a></string>
     <string name="messenger"><a href='https://m.me/ChanakaMadurangaKarunarathne'>Messenger</a></string>
 
+
+    <string name="title_activity_huawei">Steps for Huawei Phones</string>
     <string name="if_huawei">If this application does not run on background, try adding this app to protected apps list in your settings. Follow the steps below.</string>
     <string name="if_huawei_old">If you are using a Huawei Nougat model then follow the steps below.</string>
     <string name="done">If you have completed above steps, app will automatically log you in when UoM_Wireless Wi-Fi is connected.</string>
