@@ -2,6 +2,7 @@ package lk.cse13.www.uomwireless.Views;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -114,10 +115,22 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(getApplicationContext(), WebActivity.class);
             i.putExtra("site", "webmail");
             startActivity(i);
+        } else if (id == R.id.nav_source) {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/kmchmk1026/UoM-WiFi-Login"));
+            startActivity(i);
+        } else if (id == R.id.nav_windows) {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://wearetrying.info/uomw/"));
+            startActivity(i);
         } else if (id == R.id.nav_email) {
-
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(Intent.EXTRA_EMAIL, new String[]{"kmchmk@gmail.com"});
+            i.putExtra(Intent.EXTRA_SUBJECT, "About UoM Login App");
+            i.putExtra(Intent.EXTRA_TEXT, "Hi,\n\n");
+            startActivity(i);
         } else if (id == R.id.nav_messenger) {
-
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://messaging/" + "100001539300658"));
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
