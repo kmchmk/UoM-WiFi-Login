@@ -2,6 +2,10 @@
     <string name="app_name">UoM Wireless Login</string>
     <string name="title_activity_main">UoM Login</string>
     <string name="settings">Settings</string>
+    <string name="title_otherssid">SSID</string>
+    <string name="title_otherserver">Server URL</string>
+    <string name="title_otherusername">Username</string>
+    <string name="title_otherpassword">Password</string>
     <string name="title_index">Index number</string>
     <string name="title_password">Password</string>
     <string name="action_sign_in">Save / Login</string>
@@ -61,7 +65,7 @@
 
     <!-- Example General settings -->
     <string name="pref_header_general">General settings</string>
-
+    <string name="pref_header_otherserver">Other server settings</string>
     <string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact
         based on your message history
@@ -69,6 +73,10 @@
 
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_index">123456X</string>
+
+    <string name="pref_default_otherssid">My WiFi</string>
+    <string name="pref_default_otherserver">https://myserver/login.html</string>
+    <string name="pref_default_otherusername">user</string>
 
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
     <string-array name="pref_example_list_titles">

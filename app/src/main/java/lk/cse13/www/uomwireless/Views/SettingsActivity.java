@@ -115,7 +115,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)
-                || NotificationPreferenceFragment.class.getName().equals(fragmentName);
+                || NotificationPreferenceFragment.class.getName().equals(fragmentName)
+                || OtherServerPreferenceFragment.class.getName().equals(fragmentName);
     }
 
     /**
@@ -168,6 +169,38 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_notification);
             setHasOptionsMenu(true);
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class OtherServerPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            MainActivity.loginScreenShowing = true;
+            addPreferencesFromResource(R.xml.pref_otherserver);
+            setHasOptionsMenu(true);
+            bindPreferenceSummaryToValue(findPreference("otherssid"));
+            bindPreferenceSummaryToValue(findPreference("otherserver"));
+            bindPreferenceSummaryToValue(findPreference("otherusername"));
+        }
+
+        @Override
+        public void onDestroy(){
+            super.onDestroy();
+            Operations.toast("Saved");
+            MainActivity.loginScreenShowing = false;
         }
 
         @Override

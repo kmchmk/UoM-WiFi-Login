@@ -1,0 +1,42 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:capitalize="none"
+        android:defaultValue="@string/pref_default_otherssid"
+        android:inputType="textCapWords"
+        android:key="otherssid"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/title_otherssid" />
+
+    <EditTextPreference
+        android:capitalize="none"
+        android:defaultValue="@string/pref_default_otherserver"
+        android:inputType="textCapWords"
+        android:key="otherserver"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/title_otherserver" />
+
+    <EditTextPreference
+        android:capitalize="characters"
+        android:defaultValue="@string/pref_default_otherusername"
+        android:inputType="textCapWords"
+        android:key="otherusername"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/title_otherusername" />
+
+    <EditTextPreference
+        android:inputType="textPassword"
+        android:key="otherpassword"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:password="true"
+        android:title="@string/title_otherpassword" />
+
+</PreferenceScreen>
