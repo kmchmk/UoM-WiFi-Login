@@ -47,6 +47,19 @@ public class Operations {
         return info.getSSID().equalsIgnoreCase("\"UoM_Wireless\"");
     }
 
+    public static boolean isConnectedToOtherSSID() {
+        WifiManager wifiManager = (WifiManager) MainActivity.mainContext.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo info = wifiManager.getConnectionInfo();
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.mainContext);
+        String otherssid = sharedPref.getString("otherssid", "");
+
+        return info.getSSID().equalsIgnoreCase("\""+otherssid+"\"");
+    }
+
+
+
+
     public static boolean isNotificationEnabled() {
         SharedPreferences preferences = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
         return (preferences.getBoolean("notification_enabled", true));
@@ -126,5 +139,20 @@ public class Operations {
     public static String getPassword() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.mainContext);
         return sharedPref.getString("password", "");
+    }
+
+    public static String getOtherUsername() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.mainContext);
+        return sharedPref.getString("otherusername", "");
+    }
+
+    public static String getOtherPassword() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.mainContext);
+        return sharedPref.getString("otherpassword", "");
+    }
+
+    public static String getOtherServer() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.mainContext);
+        return sharedPref.getString("otherserver", "");
     }
 }

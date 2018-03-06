@@ -24,9 +24,11 @@ import static android.R.attr.password;
 
 public class BackgroundLogin extends AsyncTask<String, Void, String> {
     private int trying;
+    private int uom_or_other;//0 if uom, else 1.
 
-    public BackgroundLogin(int trying) {
+    public BackgroundLogin(int trying, int uom_or_other) {
         this.trying = trying;
+        this.uom_or_other = uom_or_other;
         if (MainActivity.screenShowing) {
             MainActivity.loginButton.setEnabled(false);
         }
@@ -41,17 +43,29 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
             return "";
         }
 
-        if (Operations.isConnectedToUoMWireless()) {
+        if (Operations.isConnectedToUoMWireless() || Operations.isConnectedToOtherSSID()) {
 
 //            String username = Operations.readFromFile("username");
 //            String password = Operations.readFromFile("password");
 //
-            String username = Operations.getUsername();
-            String password = Operations.getPassword();
-            if (username == null || password == null) {
+            String username = "";//this might give an error
+            String password = "";//"    "
+            String server_url = "";//"  "
+
+            if(Operations.isConnectedToUoMWireless()) {
+                username = Operations.getUsername();
+                password = Operations.getPassword();
+                server_url = "https://wlan.uom.lk/login.html";
+            }
+            else if(Operations.isConnectedToOtherSSID()){
+                username = Operations.getOtherUsername();
+                password = Operations.getOtherPassword();
+                server_url = Operations.getOtherServer();
+            }
+            if (username == null || password == null || server_url==null) {
                 trying = 10;
-                return "Please enter your index and password";
-            } else if (username.length() < 7) {
+                return "Please complete your username, password or server url";
+            } else if (uom_or_other==0 && username.length() < 7) {
                 trying = 10;
                 return "Index number is incorrect";
             }
@@ -59,7 +73,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
             try {
                 MyHttpClient httpClient = new MyHttpClient();
 
-                HttpPost httpPost = new HttpPost("https://wlan.uom.lk/login.html");
+                HttpPost httpPost = new HttpPost(server_url);
 
                 List<NameValuePair> para = new ArrayList<>();
                 para.add(new BasicNameValuePair("buttonClicked", "4"));
@@ -109,7 +123,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                     try {
                         Thread.sleep(trying * 500);
                         Operations.toast("Trying to login again...");
-                        new BackgroundLogin(trying + 1).execute();
+                        new BackgroundLogin(trying + 1, uom_or_other).execute();
                     } catch (InterruptedException ignore) {
                     }
                 } else {
