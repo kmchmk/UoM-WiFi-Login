@@ -31,7 +31,7 @@ public class WebActivity extends AppCompatActivity {
         setContentView(R.layout.activity_web);
         site = getIntent().getExtras().getString("site");
 
-        webview = (WebView) findViewById(R.id.webView);
+        webview = findViewById(R.id.webView);
         webview.setWebViewClient(new MyBrowser());
         webview.setWebChromeClient(new MyChromeBrowser());
         WebSettings settings = webview.getSettings();
