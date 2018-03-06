@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="yellow">#fffc67</color>
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="red">#FFFF0000</color>
-    <color name="lms_colour">#003C79</color>
-    <color name="webmail_colour">#7220bf</color>
 
 </resources>

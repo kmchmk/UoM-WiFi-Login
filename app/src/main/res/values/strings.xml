@@ -1,16 +1,12 @@
 <resources>
     <string name="app_name">UoM Wireless Login</string>
     <string name="title_activity_main">UoM Login</string>
-    <string name="settings">Settings</string>
     <string name="title_otherssid">SSID</string>
     <string name="title_otherserver">Server URL</string>
     <string name="title_otherusername">Username</string>
     <string name="title_otherpassword">Password</string>
     <string name="title_index">Index number</string>
     <string name="title_password">Password</string>
-    <string name="action_sign_in">Save / Login</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="clear_all">Clear All</string>
 
     <string name="description">This application can be used to login in to UoM Wireless wi-fi connection without entering username and pasword again and again. When you connect to UoM Wireless wi-fi, app will automatically log you in. Feel free to let me know if you have any problems or suggestions.</string>
 
@@ -19,17 +15,8 @@
     <string name="l1">1).\tGo to Menu -> Settings -> General.</string>
     <string name="l2">2).\tEnter your index number and password.</string>
     <string name="l3">3).\tClick LOGIN button bellow.</string>
-    <string name="l4">4).\tFinally tap the login button at the bottom right corner.</string>
-    <string name="if_huawei_button">If you are using a Huawei phone, follow these steps.</string>
 
     <string name="login_button">Click here to login</string>
-
-
-    <string name="wearetrying">For windows: www.wearetrying.info/uomw</string>
-    <string name="source_code">Github: www.github.com/kmchmk1026/UoM-WiFi-Login</string>
-    <string name="contact">Contact me:</string>
-    <string name="email"><a href='mailto:kmchmk@gmail.com'>Email</a></string>
-    <string name="messenger"><a href='https://m.me/ChanakaMadurangaKarunarathne'>Messenger</a></string>
 
 
     <string name="title_activity_huawei">Steps for Huawei Phones</string>
@@ -50,15 +37,9 @@
     <string name="step6">Step 6).\tClick on UoM Wireless application</string>
     <string name="step7">Step 7).\tCheck Allow option and hit OK</string>
 
-    <string name="notification_preference">Enable notifications</string>
-    <string name="vibrate_preference">Enable vibrations</string>
-    <string name="sound_preference">Enable sound</string>
-    <string name="toast_preference">Enable toasts (Notifications you see at the bottom)</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->
@@ -66,75 +47,20 @@
     <!-- Example General settings -->
     <string name="pref_header_general">General settings</string>
     <string name="pref_header_otherserver">Other server settings</string>
-    <string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
-    </string>
 
-    <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_index">123456X</string>
 
     <string name="pref_default_otherssid">My WiFi</string>
     <string name="pref_default_otherserver">https://myserver/login.html</string>
     <string name="pref_default_otherusername">user</string>
 
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
-    </string-array>
-
     <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
-
-    <string name="pref_title_sync_frequency">Sync frequency</string>
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>
-
-    <string-array name="list_preference_entries">
-        <item>Entry 1</item>
-        <item>Entry 2</item>
-        <item>Entry 3</item>
-    </string-array>
-
-    <string-array name="list_preference_entry_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array name="multi_select_list_preference_default_value" />
-
-    <string name="pref_title_system_sync_settings">System sync settings</string>
 
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notification settings</string>
 
     <string name="pref_title_notifications">Notifications</string>
     <string name="pref_title_toasts">Toasts</string>
-
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_sound">Sound</string>
     <string name="pref_title_vibrate">Vibrate</string>
