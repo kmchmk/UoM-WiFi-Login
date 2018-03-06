@@ -24,11 +24,9 @@ import static android.R.attr.password;
 
 public class BackgroundLogin extends AsyncTask<String, Void, String> {
     private int trying;
-    private int uom_or_other;//0 if uom, else 1.
 
-    public BackgroundLogin(int trying, int uom_or_other) {
+    public BackgroundLogin(int trying) {
         this.trying = trying;
-        this.uom_or_other = uom_or_other;
         if (MainActivity.screenShowing) {
             MainActivity.loginButton.setEnabled(false);
         }
@@ -48,9 +46,9 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
 //            String username = Operations.readFromFile("username");
 //            String password = Operations.readFromFile("password");
 //
-            String username = "";//this might give an error
-            String password = "";//"    "
-            String server_url = "";//"  "
+            String username = null;//this might give an error
+            String password = null;//"    "
+            String server_url = null;//"  "
 
             if(Operations.isConnectedToUoMWireless()) {
                 username = Operations.getUsername();
@@ -65,7 +63,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
             if (username == null || password == null || server_url==null) {
                 trying = 10;
                 return "Please complete your username, password or server url";
-            } else if (uom_or_other==0 && username.length() < 7) {
+            } else if (Operations.isConnectedToUoMWireless() && username.length() < 7) {
                 trying = 10;
                 return "Index number is incorrect";
             }
@@ -123,7 +121,7 @@ public class BackgroundLogin extends AsyncTask<String, Void, String> {
                     try {
                         Thread.sleep(trying * 500);
                         Operations.toast("Trying to login again...");
-                        new BackgroundLogin(trying + 1, uom_or_other).execute();
+                        new BackgroundLogin(trying + 1).execute();
                     } catch (InterruptedException ignore) {
                     }
                 } else {

@@ -47,12 +47,17 @@ public class Operations {
         return info.getSSID().equalsIgnoreCase("\"UoM_Wireless\"");
     }
 
+
+    public static String getOtherSSID() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.mainContext);
+        return sharedPref.getString("otherssid", "");
+    }
+
     public static boolean isConnectedToOtherSSID() {
         WifiManager wifiManager = (WifiManager) MainActivity.mainContext.getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifiManager.getConnectionInfo();
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.mainContext);
-        String otherssid = sharedPref.getString("otherssid", "");
+        String otherssid = getOtherSSID();
 
         return info.getSSID().equalsIgnoreCase("\""+otherssid+"\"");
     }

@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onClick(View view) {
-                if (Operations.isConnectedToUoMWireless()) {
+                if (Operations.isConnectedToUoMWireless() || Operations.isConnectedToOtherSSID()) {
                     if (loggedIn) {
                         Operations.toast("Logging out...");
                         new BackgroundLogout().execute();
@@ -59,7 +59,8 @@ public class MainActivity extends AppCompatActivity
                         new BackgroundLogin(0).execute();
                     }
                 } else {
-                    Operations.toast("Connect to UoM Wireless first");
+                    String otherssid = Operations.getOtherSSID();
+                    Operations.toast("Connect to UoM Wireless"+(otherssid == null ? "":"/"+otherssid)+" first");
                 }
 
             }
