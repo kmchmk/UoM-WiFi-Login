@@ -19,7 +19,6 @@ import java.util.List;
 
 import lk.cse13.www.uomwireless.Views.MainActivity;
 
-import static android.R.attr.password;
 
 
 public class BackgroundLogin extends AsyncTask<String, Void, String> {

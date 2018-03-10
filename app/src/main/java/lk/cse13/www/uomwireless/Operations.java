@@ -7,10 +7,7 @@ import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import lk.cse13.www.uomwireless.Views.MainActivity;
@@ -74,7 +71,7 @@ public class Operations {
 
 
 
-    public static boolean isNotificationEnabled() {
+    private static boolean isNotificationEnabled() {
         SharedPreferences preferences = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
         return (preferences.getBoolean("notification_enabled", true));
     }
@@ -133,7 +130,7 @@ public class Operations {
         SharedPreferences settings = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean(type, value);
-        editor.commit();
+        editor.apply();
     }
 
     public static Boolean getPreferences(String type) {

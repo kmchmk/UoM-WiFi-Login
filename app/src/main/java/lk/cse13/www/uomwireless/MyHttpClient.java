@@ -21,7 +21,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-public class MyHttpClient extends DefaultHttpClient {
+class MyHttpClient extends DefaultHttpClient {
 
     @Override
     protected ClientConnectionManager createClientConnectionManager() {
@@ -48,7 +48,7 @@ public class MyHttpClient extends DefaultHttpClient {
     }
 
     public class MySSLSocketFactory extends SSLSocketFactory {
-        SSLContext sslContext = SSLContext.getInstance("TLS");
+        final SSLContext sslContext = SSLContext.getInstance("TLS");
 
         public MySSLSocketFactory(KeyStore truststore) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException, UnrecoverableKeyException {
             super(truststore);

@@ -11,7 +11,7 @@ import android.support.v4.app.NotificationCompat;
 
 import lk.cse13.www.uomwireless.Views.MainActivity;
 
-public class StatusNotification {
+class StatusNotification {
     public static void notify(final String text) {
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.mainContext)
                 .setSmallIcon(R.mipmap.ic_launcher)

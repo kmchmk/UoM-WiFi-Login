@@ -4,7 +4,7 @@
 
     <header
         android:fragment="lk.cse13.www.uomwireless.Views.SettingsActivity$GeneralPreferenceFragment"
-        android:icon="@drawable/ic_info_black_24dp"
+        android:icon="@drawable/ic_person_black_24dp"
         android:title="@string/pref_header_general" />
 
     <header
@@ -14,7 +14,7 @@
 
     <header
         android:fragment="lk.cse13.www.uomwireless.Views.SettingsActivity$OtherServerPreferenceFragment"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/ic_wifi_black_24dp"
         android:title="@string/pref_header_otherserver" />
 
 
