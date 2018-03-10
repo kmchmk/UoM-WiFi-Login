@@ -33,12 +33,21 @@ public class Operations {
     public static boolean isLoggedIn() {
         try {
             Runtime runtime = Runtime.getRuntime();
-            Process ipProcess = runtime.exec("/system/bin/ping -c 1 -w 1 10.10.31.254");
-            int exitValue = ipProcess.waitFor();
-            return (exitValue == 0);
+            if(isConnectedToUoMWireless()) {
+                Process ipProcess = runtime.exec("/system/bin/ping -c 1 -w 1 10.10.31.254");//pinging nearest router
+                int exitValue = ipProcess.waitFor();
+                return (exitValue == 0);
+            }else if(isConnectedToOtherSSID()){
+                Process ipProcess = runtime.exec("/system/bin/ping -c 1 -w 1 8.8.8.8");//pinging google's DNS server
+                int exitValue = ipProcess.waitFor();
+                return (exitValue == 0);
+            }
+
         } catch (Exception e) {
             return false;
         }
+
+        return false;
     }
 
     public static boolean isConnectedToUoMWireless() {

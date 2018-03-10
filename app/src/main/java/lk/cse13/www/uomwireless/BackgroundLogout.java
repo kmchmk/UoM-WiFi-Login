@@ -53,7 +53,11 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
             } catch (Exception e) {
                 return responseString;
             }
-        } else {
+        }
+        else if(Operations.isConnectedToOtherSSID()){
+            return "You cannot logout from " + Operations.getOtherSSID();
+        }
+        else {
             return "Connect to UoM Wireless first";
         }
     }
