@@ -27,7 +27,7 @@ public class Operations {
         }
     }
 
-    public static boolean isLoggedIn() {
+    public static boolean isConnectedToInternet() {
         try {
             Runtime runtime = Runtime.getRuntime();
             if(isConnectedToUoMWireless()) {
@@ -39,7 +39,6 @@ public class Operations {
                 int exitValue = ipProcess.waitFor();
                 return (exitValue == 0);
             }
-
         } catch (Exception e) {
             return false;
         }
@@ -62,9 +61,7 @@ public class Operations {
     public static boolean isConnectedToOtherSSID() {
         WifiManager wifiManager = (WifiManager) MainActivity.mainContext.getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifiManager.getConnectionInfo();
-
         String otherssid = getOtherSSID();
-
         return info.getSSID().equalsIgnoreCase("\""+otherssid+"\"");
     }
 
@@ -72,48 +69,19 @@ public class Operations {
 
 
     private static boolean isNotificationEnabled() {
-        SharedPreferences preferences = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
-        return (preferences.getBoolean("notification_enabled", true));
+        return getPreferences("notification_enabled");
     }
 
     private static boolean isToastEnabled() {
-        SharedPreferences preferences = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
-        return (preferences.getBoolean("toast_enabled", true));
+        return getPreferences("toast_enabled");
     }
 
-    private static boolean isVibrationEnabled() {
-        SharedPreferences preferences = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
-        return (preferences.getBoolean("toast_enabled", true));
+    public static boolean isVibrationEnabled() {
+        return getPreferences("vibration_enabled");
     }
 
-    private static boolean isSoundEnabled() {
-        SharedPreferences preferences = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
-        return (preferences.getBoolean("toast_enabled", true));
-    }
-
-
-   /* public static String readFromFile(String file) {
-        String ret = "";
-        try {
-            InputStream inputStream = MainActivity.mainContext.openFileInput(file);
-            if (inputStream != null) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                ret = bufferedReader.readLine();
-                inputStream.close();
-            }
-        } catch (IOException ignored) {
-        }
-        return ret;
-    }
-*/
-    public static void writeToFile(String data, String file) {
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(MainActivity.mainContext.openFileOutput(file, Context.MODE_PRIVATE));
-            outputStreamWriter.write(data);
-            outputStreamWriter.close();
-        } catch (IOException ignored) {
-        }
+    public static boolean isSoundEnabled() {
+        return getPreferences("sound_enabled");
     }
 
     public static void showNotification(String notification) {
@@ -133,14 +101,10 @@ public class Operations {
         editor.apply();
     }
 
-    public static Boolean getPreferences(String type) {
-//        SharedPreferences preferences = MainActivity.mainContext.getSharedPreferences("preferences", MODE_PRIVATE);
-//        return preferences.getBoolean(type, true);
-
+    private static Boolean getPreferences(String type) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.mainContext);
         return sharedPref.getBoolean(type, true);
     }
-
 
     public static String getUsername() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.mainContext);

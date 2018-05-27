@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity
     public static boolean loggedIn = false;
     public static boolean screenShowing = false;
     public static Context mainContext;
-    public static Boolean loginScreenShowing = false;
+    public static Boolean loginScreenShowing = false;//Settings page
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

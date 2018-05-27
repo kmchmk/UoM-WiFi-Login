@@ -45,7 +45,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
                 StatusLine statusLine = response.getStatusLine();
 
                 if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-                    if (!Operations.isLoggedIn()) {
+                    if (!Operations.isConnectedToInternet()) {
                         responseString = "Logged out";
                     }
                 }
@@ -66,6 +66,7 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         Operations.toast(message);
         if (message.equals("Logged out")) {
+            MainActivity.loginButton.setText("Click here to login");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 MainActivity.loginButton.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             }
