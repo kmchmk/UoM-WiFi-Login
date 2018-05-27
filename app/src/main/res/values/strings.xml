@@ -12,7 +12,7 @@
 
     <string name="drawer_description">Login to WiFi, Moodle, LMS and Webmail</string>
 
-    <string name="l1">1).\tGo to Menu -> Settings -> General.</string>
+    <string name="l1">1).\tGo to Menu -> Settings -> UoM Wireless.</string>
     <string name="l2">2).\tEnter your index number and password.</string>
     <string name="l3">3).\tClick LOGIN button bellow.</string>
 
@@ -45,7 +45,7 @@
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
-    <string name="pref_header_general">General settings</string>
+    <string name="pref_header_uomwireless">UoM Wireless settings</string>
     <string name="pref_header_otherserver">Other server settings</string>
 
     <string name="pref_default_index">123456X</string>

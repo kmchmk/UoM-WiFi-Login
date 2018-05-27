@@ -5,17 +5,17 @@
     <header
         android:fragment="lk.cse13.www.uomwireless.Views.SettingsActivity$GeneralPreferenceFragment"
         android:icon="@drawable/ic_person_black_24dp"
-        android:title="@string/pref_header_general" />
-
+        android:title="@string/pref_header_uomwireless" />
+    <header
+        android:fragment="lk.cse13.www.uomwireless.Views.SettingsActivity$OtherServerPreferenceFragment"
+        android:icon="@drawable/ic_wifi_black_24dp"
+        android:title="@string/pref_header_otherserver" />
     <header
         android:fragment="lk.cse13.www.uomwireless.Views.SettingsActivity$NotificationPreferenceFragment"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/pref_header_notifications" />
 
-    <header
-        android:fragment="lk.cse13.www.uomwireless.Views.SettingsActivity$OtherServerPreferenceFragment"
-        android:icon="@drawable/ic_wifi_black_24dp"
-        android:title="@string/pref_header_otherserver" />
+
 
 
 </preference-headers>

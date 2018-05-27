@@ -1,10 +1,12 @@
 package lk.cse13.www.uomwireless.Views;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -86,19 +88,35 @@ public class WebActivity extends AppCompatActivity {
             }
         }
 
-        @Override
+
+        private void noInternetMessage(int errorCode, String description){
+            if(errorCode == -2) {
+                webview.loadUrl("about:blank");
+                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(WebActivity.this);
+                dlgAlert.setTitle("No internet connection!");
+                dlgAlert.setMessage("Connect to the internet and try again!");
+                dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                dlgAlert.create().show();
+            }
+            else
+            {
+                Operations.toast(description);
+            }
+        }
+
+        @TargetApi(Build.VERSION_CODES.M)
         public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-            webview.loadUrl("about:blank");
-            AlertDialog.Builder dlgAlert = new AlertDialog.Builder(WebActivity.this);
-            dlgAlert.setTitle("No internet connection!");
-            dlgAlert.setMessage("Connect to the internet and try again!");
-            dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            });
-            dlgAlert.create().show();
+                noInternetMessage(error.getErrorCode(), (String) error.getDescription());
+        }
+
+        @SuppressWarnings("deprecation")
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            noInternetMessage(errorCode, description);
         }
     }
 
