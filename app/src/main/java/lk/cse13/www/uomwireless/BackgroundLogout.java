@@ -4,7 +4,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
@@ -28,37 +27,30 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
     protected String doInBackground(String[] params) {
 
         if (Operations.isConnectedToUoMWireless()) {
-            String responseString = "Couldn't log out";
-            try {
-
-                MyHttpClient httpClient = new MyHttpClient();
-
-                HttpPost httpPost = new HttpPost("https://wlan.uom.lk/logout.html");
-
-                List<NameValuePair> para = new ArrayList<>();
-
-                para.add(new BasicNameValuePair("userStatus", "1"));
-                para.add(new BasicNameValuePair("err_flag", "0"));
-                para.add(new BasicNameValuePair("err_msg", ""));
-                httpPost.setEntity(new UrlEncodedFormEntity(para));
-                HttpResponse response = httpClient.execute(httpPost);
-                StatusLine statusLine = response.getStatusLine();
-
-                if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-                    if (!Operations.isConnectedToInternet()) {
-                        responseString = "Logged out";
-                    }
-                }
-                return responseString;
-            } catch (Exception e) {
-                return responseString;
-            }
+            return this.logout("https://wlan.uom.lk/logout.html");
         }
-        else if(Operations.isConnectedToOtherSSID()){
-            return "You cannot logout from " + Operations.getOtherSSID();
+        else if (Operations.isConnectedToOtherSSID()) {
+//            return "You cannot logout from " + Operations.getOtherSSID();
+            String otherServerURL = Operations.getOtherServer();
+
+            if(otherServerURL.equals(""))
+            {
+                return "Add login URL in settings";
+            }
+
+            if(otherServerURL.contains("login.htm")){
+                otherServerURL = otherServerURL.replace("login.htm", "logout.htm");
+            }
+            else{
+                if(!otherServerURL.substring(otherServerURL.length() - 1).equals("/")){
+                    otherServerURL += "/";
+                }
+                otherServerURL += "logout.html";
+            }
+            return this.logout(otherServerURL);
         }
         else {
-            return "Connect to UoM Wireless first";
+            return "Connect to UoM Wireless/"+ Operations.getOtherSSID() +" first";
         }
     }
 
@@ -75,5 +67,35 @@ public class BackgroundLogout extends AsyncTask<String, Void, String> {
         }
         MainActivity.loginButton.setEnabled(true);
     }
+
+
+    private String logout(String serverURL) {
+        String responseString = "Couldn't log out";
+        try {
+
+            MyHttpClient httpClient = new MyHttpClient();
+
+            HttpPost httpPost = new HttpPost(serverURL);
+
+            List<NameValuePair> para = new ArrayList<>();
+
+            para.add(new BasicNameValuePair("userStatus", "1"));
+            para.add(new BasicNameValuePair("err_flag", "0"));
+            para.add(new BasicNameValuePair("err_msg", ""));
+            httpPost.setEntity(new UrlEncodedFormEntity(para));
+            HttpResponse response = httpClient.execute(httpPost);
+            StatusLine statusLine = response.getStatusLine();
+
+            if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+                if (!Operations.isConnectedToInternet()) {
+                    responseString = "Logged out";
+                }
+            }
+            return responseString;
+        } catch (Exception e) {
+            return responseString;
+        }
+    }
+
 }
 
