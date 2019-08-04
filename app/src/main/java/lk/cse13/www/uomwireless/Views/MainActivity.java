@@ -2,9 +2,9 @@ package lk.cse13.www.uomwireless.Views;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import lk.cse13.www.uomwireless.BackgroundLogin;
@@ -50,6 +51,9 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onClick(View view) {
+                if (!Operations.isLocationEnabled()) {
+                    return;
+                }
                 if (Operations.isConnectedToUoMWireless() || Operations.isConnectedToOtherSSID()) {
                     if (loggedIn) {
                         Operations.toast("Logging out...");
@@ -60,12 +64,14 @@ public class MainActivity extends AppCompatActivity
                     }
                 } else {
                     String otherssid = Operations.getOtherSSID();
-                    Operations.toast("Connect to UoM Wireless"+(otherssid == null ? "":"/"+otherssid)+" first");
+                    Operations.toast("Connect to UoM Wireless" + (otherssid == null ? "" : "/" + otherssid) + " first");
                 }
 
             }
         });
-        new BackgroundLogin(0).execute();
+        if (Operations.isLocationEnabled()) {
+            new BackgroundLogin(0).execute();
+        }
         Operations.cancelNotification();
     }
 
@@ -137,6 +143,19 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case Operations.MY_PERMISSIONS_REQUEST_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (!(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    //Permission denied
+                    Operations.toast("Please grant location permission");
+                }
+            }
+        }
     }
 
 

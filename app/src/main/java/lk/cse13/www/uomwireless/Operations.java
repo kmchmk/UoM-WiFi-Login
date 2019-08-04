@@ -1,20 +1,29 @@
 package lk.cse13.www.uomwireless;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
-
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 
 import lk.cse13.www.uomwireless.Views.MainActivity;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class Operations {
+
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+
     private static Toast toastvariable;
 
     public static void toast(String message) {
@@ -30,11 +39,11 @@ public class Operations {
     public static boolean isConnectedToInternet() {
         try {
             Runtime runtime = Runtime.getRuntime();
-            if(isConnectedToUoMWireless()) {
+            if (isConnectedToUoMWireless()) {
                 Process ipProcess = runtime.exec("/system/bin/ping -c 1 -w 1 10.10.31.254");//pinging nearest router
                 int exitValue = ipProcess.waitFor();
                 return (exitValue == 0);
-            }else if(isConnectedToOtherSSID()){
+            } else if (isConnectedToOtherSSID()) {
                 Process ipProcess = runtime.exec("/system/bin/ping -c 1 -w 1 8.8.8.8");//pinging google's DNS server
                 int exitValue = ipProcess.waitFor();
                 return (exitValue == 0);
@@ -62,11 +71,37 @@ public class Operations {
         WifiManager wifiManager = (WifiManager) MainActivity.mainContext.getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifiManager.getConnectionInfo();
         String otherssid = getOtherSSID();
-        return info.getSSID().equalsIgnoreCase("\""+otherssid+"\"");
+        return info.getSSID().equalsIgnoreCase("\"" + otherssid + "\"");
+    }
+
+    public static boolean isLocationEnabled() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+            //For Oreo and previous Android versions, locations is not needed.
+            return true;
+        }
+        LocationManager locationManager = (LocationManager) MainActivity.mainContext.getSystemService(Activity.LOCATION_SERVICE);
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            return requestLocationPermission();
+        } else {
+            toast("Enable location service first");
+            MainActivity.mainContext.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+            return false;
+        }
     }
 
 
-
+    private static boolean requestLocationPermission() {
+        int fineLocation = ContextCompat.checkSelfPermission(MainActivity.mainContext, Manifest.permission.ACCESS_FINE_LOCATION);
+        int coarseLocation = ContextCompat.checkSelfPermission(MainActivity.mainContext, Manifest.permission.ACCESS_COARSE_LOCATION);
+        if (fineLocation != PackageManager.PERMISSION_GRANTED && coarseLocation != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) MainActivity.mainContext,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_LOCATION);
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     private static boolean isNotificationEnabled() {
         return getPreferences("notification_enabled");
