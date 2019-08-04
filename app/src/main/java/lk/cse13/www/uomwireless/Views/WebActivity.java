@@ -7,8 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
@@ -56,15 +56,10 @@ public class WebActivity extends AppCompatActivity {
     }
 
     private void login() {
-//        String username = Operations.readFromFile("username");
-//        String password = Operations.readFromFile("password");
         String username = Operations.getUsername();
         String password = Operations.getPassword();
 
-        if (site.equals("online")) {
-            String postData = "username=" + username + "&password=" + password;
-            webview.postUrl("https://online.mrt.ac.lk/login/index.php", EncodingUtils.getBytes(postData, "BASE64"));
-        } else if (site.equals("lms")) {
+        if (site.equals("lms")) {
             String postData = "LearnOrgUsername=" + username + "&LearnOrgPassword=" + password + "&LearnOrgLogin=Login";
             webview.postUrl("https://lms.mrt.ac.lk/login.php", EncodingUtils.getBytes(postData, "BASE64"));
         } else if (site.equals("webmail")) {
@@ -89,8 +84,8 @@ public class WebActivity extends AppCompatActivity {
         }
 
 
-        private void noInternetMessage(int errorCode, String description){
-            if(errorCode == -2) {
+        private void noInternetMessage(int errorCode, String description) {
+            if (errorCode == -2) {
                 webview.loadUrl("about:blank");
                 AlertDialog.Builder dlgAlert = new AlertDialog.Builder(WebActivity.this);
                 dlgAlert.setTitle("No internet connection!");
@@ -102,16 +97,14 @@ public class WebActivity extends AppCompatActivity {
                     }
                 });
                 dlgAlert.create().show();
-            }
-            else
-            {
+            } else {
                 Operations.toast(description);
             }
         }
 
         @TargetApi(Build.VERSION_CODES.M)
         public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-                noInternetMessage(error.getErrorCode(), (String) error.getDescription());
+            noInternetMessage(error.getErrorCode(), (String) error.getDescription());
         }
 
         @SuppressWarnings("deprecation")

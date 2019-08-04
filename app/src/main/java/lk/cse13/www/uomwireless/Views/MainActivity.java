@@ -111,9 +111,7 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(i);
         } else if (id == R.id.nav_moodle) {
-            Intent i = new Intent(getApplicationContext(), WebActivity.class);
-            i.putExtra("site", "online");
-            startActivity(i);
+            startMoodleApp();
         } else if (id == R.id.nav_lms) {
             Intent i = new Intent(getApplicationContext(), WebActivity.class);
             i.putExtra("site", "lms");
@@ -158,5 +156,20 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
+    private void startMoodleApp() {
+        String moodlePackageName = "com.moodle.moodlemobile";
+        Intent intent = MainActivity.mainContext.getPackageManager().getLaunchIntentForPackage(moodlePackageName);
+        if (intent == null) {
+            // Bring user to the market or let them choose an app?
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("market://details?id=" + moodlePackageName));
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        try {
+            MainActivity.mainContext.startActivity(intent);
+        } catch (android.content.ActivityNotFoundException anfe) {
+            intent.setData(Uri.parse("http://play.google.com/store/apps/details?id=" + moodlePackageName));
+            MainActivity.mainContext.startActivity(intent);
+        }
+    }
 }
