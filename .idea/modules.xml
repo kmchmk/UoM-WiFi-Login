@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/UoM-WiFi-Login.iml" filepath="$PROJECT_DIR$/UoM-WiFi-Login.iml" />
-      <module fileurl="file://$PROJECT_DIR$/UoMWireless.iml" filepath="$PROJECT_DIR$/UoMWireless.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
